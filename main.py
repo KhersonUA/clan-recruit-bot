@@ -98,23 +98,22 @@ T = {
         ),
 
         "form_title": "🧾 <b>Анкета</b>",
-        "q_nick": "⚔️ (1/12)\n\nВведи <b>ник в игре</b>:",
+        "q_nick": "⚔️ (1/11)\n\nВведи <b>ник в игре</b>:",
         "q_contact": (
-            "📩 (2/12)\n\nУкажи <b>контакт в Telegram</b>:\n"
+            "📩 (2/11)\n\nУкажи <b>контакт в Telegram</b>:\n"
             "• @username\n\n"
             "Если нет username — напиши <b>нет</b> или контакт для связи."
         ),
         "use_my_tg": "✅ Использовать мой Telegram",
-        "q_country": "🌍 (3/12)\n\nУкажи <b>страна / город</b> (кратко):",
-        "q_prof": "🧙‍♂️ (4/12)\n\nУкажи <b>профу / саб</b> (коротко):\n<i>Пример: Necromancer / Bishop</i>",
-        "q_lvl": "🧠 (5/12)\n\nУкажи <b>уровень</b> (числом):",
-        "q_noble": "🪽 (6/12)\n\nНобл есть?",
-        "q_prime": "⏰ (7/12)\n\nУкажи <b>прайм</b> (дни + время):\n<i>Пример: Пн–Пт 20:00–00:00, сб/вс больше</i>",
-        "q_mic": "🎙 (8/12)\n\nЕсть <b>микрофон</b> и готов слушать колл (TS/Discord)?",
-        "q_goal": "⚔️ (9/12)\n\nНа какую активность ты ориентирован в первую очередь?",
-        "q_ready": "🛡 (10/12)\n\nГотовность к <b>прайму/явке</b>:",
-        "q_why": "⭐ (11/12)\n\nПочему ты хочешь вступить именно в <b>SOBRANIEGOLD</b>?\n<i>1–2 предложения</i>",
-        "q_discipline": "📜 (12/12)\n\nГотов соблюдать правила клана и решения КЛа/ПЛа?",
+        "q_country": "🌍 (3/11)\n\nУкажи <b>страна / город</b> (кратко):",
+        "q_prof": "🧙‍♂️ (4/11)\n\nУкажи <b>профу / саб</b> (коротко):\n<i>Пример: Necromancer / Bishop</i>",
+        "q_lvl": "🧠 (5/11)\n\nУкажи <b>уровень</b> (числом):",
+        "q_noble": "🪽 (6/11)\n\nНобл есть?",
+        "q_prime": "⏰ (7/11)\n\nУкажи <b>прайм</b> (дни + время):\n<i>Пример: Пн–Пт 20:00–00:00, сб/вс больше</i>",
+        "q_mic": "🎙 (8/11)\n\nЕсть <b>микрофон</b> и готов слушать колл (TS/Discord)?",
+        "q_ready": "🛡 (9/11)\n\nГотовность к <b>прайму/явке</b>:",
+        "q_why": "⭐ (10/11)\n\nПочему ты хочешь вступить именно в <b>SOBRANIEGOLD</b>?\n<i>1–2 предложения</i>",
+        "q_discipline": "📜 (11/11)\n\nГотов соблюдать правила клана и решения КЛа/ПЛа?",
 
         "btn_yes": "✅ Да",
         "btn_no": "❌ Нет",
@@ -123,17 +122,14 @@ T = {
         "btn_mic_yes": "🎙 Да",
         "btn_mic_no": "🔇 Нет",
 
-        "btn_goal_kp": "🎯 КП",
-        "btn_goal_siege": "⚔️ Осады / PvP",
-        "btn_goal_mass": "👥 Массовки",
-        "btn_goal_farm": "💰 Фарм / PvE",
-
         "btn_ready_yes": "✅ Готов стабильно",
         "btn_ready_sometimes": "⚠️ Не всегда",
         "btn_ready_no": "❌ Не готов",
 
         "preview_title": "🧾 <b>Проверь заявку</b>",
+        "preview_hint": "Если всё верно — нажми <b>«Отправить»</b>.",
         "sent_ok": "✅ <b>Анкета принята</b>\n\nРассмотрение занимает до 24 часов.\nОтвет поступит в Telegram при положительном решении.",
+
         "only_private": "Подача заявки доступна только в личных сообщениях.",
         "invalid_nick": "⚠️ Ник без ссылок и @. Повтори:",
         "invalid_no_links": "⚠️ Без ссылок и @. Повтори:",
@@ -143,7 +139,20 @@ T = {
         "cooldown": "Повторная заявка доступна через 12 часов.",
         "choose_buttons": "Выбери действие кнопками ниже:",
         "discipline_no_user": "❌ Заявка отклонена: дисциплина не подтверждена.",
+
+        "label_nick": "Ник",
+        "label_contact": "Контакт TG",
+        "label_country": "Страна/город",
+        "label_prof": "Профа/саб",
+        "label_lvl": "Уровень",
+        "label_noble": "Нобл",
+        "label_prime": "Прайм",
+        "label_mic": "Микрофон/TS",
+        "label_ready": "Готовность",
+        "label_why": "Почему к нам",
+        "label_disc": "Дисциплина",
     },
+
     "uk": {
         "lang_pick": "🌍 Обери мову / Choose language / Выбери язык:",
         "welcome_title": "🏰 <b>SOBRANIEGOLD — офіційний набір</b>",
@@ -168,23 +177,22 @@ T = {
         ),
 
         "form_title": "🧾 <b>Анкета</b>",
-        "q_nick": "⚔️ (1/12)\n\nВведи <b>нік у грі</b>:",
+        "q_nick": "⚔️ (1/11)\n\nВведи <b>нік у грі</b>:",
         "q_contact": (
-            "📩 (2/12)\n\nВкажи <b>контакт у Telegram</b>:\n"
+            "📩 (2/11)\n\nВкажи <b>контакт у Telegram</b>:\n"
             "• @username\n\n"
             "Якщо немає username — напиши <b>нема</b> або контакт для зв’язку."
         ),
         "use_my_tg": "✅ Використати мій Telegram",
-        "q_country": "🌍 (3/12)\n\nВкажи <b>країна / місто</b> (коротко):",
-        "q_prof": "🧙‍♂️ (4/12)\n\nВкажи <b>профу / саб</b>:\n<i>Приклад: Necromancer / Bishop</i>",
-        "q_lvl": "🧠 (5/12)\n\nВкажи <b>рівень</b> (числом):",
-        "q_noble": "🪽 (6/12)\n\nЄ нобл?",
-        "q_prime": "⏰ (7/12)\n\nВкажи <b>прайм</b> (дні + час):\n<i>Приклад: Пн–Пт 20:00–00:00, сб/нд більше</i>",
-        "q_mic": "🎙 (8/12)\n\nЄ <b>мікрофон</b> і готовий слухати колл (TS/Discord)?",
-        "q_goal": "⚔️ (9/12)\n\nНа яку активність ти орієнтований в першу чергу?",
-        "q_ready": "🛡 (10/12)\n\nГотовність до <b>прайму/явки</b>:",
-        "q_why": "⭐ (11/12)\n\nЧому ти хочеш саме в <b>SOBRANIEGOLD</b>?\n<i>1–2 речення</i>",
-        "q_discipline": "📜 (12/12)\n\nГотовий дотримуватись правил клану та рішень КЛ/ПЛ?",
+        "q_country": "🌍 (3/11)\n\nВкажи <b>країна / місто</b> (коротко):",
+        "q_prof": "🧙‍♂️ (4/11)\n\nВкажи <b>профу / саб</b>:\n<i>Приклад: Necromancer / Bishop</i>",
+        "q_lvl": "🧠 (5/11)\n\nВкажи <b>рівень</b> (числом):",
+        "q_noble": "🪽 (6/11)\n\nЄ нобл?",
+        "q_prime": "⏰ (7/11)\n\nВкажи <b>прайм</b> (дні + час):\n<i>Приклад: Пн–Пт 20:00–00:00, сб/нд більше</i>",
+        "q_mic": "🎙 (8/11)\n\nЄ <b>мікрофон</b> і готовий слухати колл (TS/Discord)?",
+        "q_ready": "🛡 (9/11)\n\nГотовність до <b>прайму/явки</b>:",
+        "q_why": "⭐ (10/11)\n\nЧому ти хочеш саме в <b>SOBRANIEGOLD</b>?\n<i>1–2 речення</i>",
+        "q_discipline": "📜 (11/11)\n\nГотовий дотримуватись правил клану та рішень КЛ/ПЛ?",
 
         "btn_yes": "✅ Так",
         "btn_no": "❌ Ні",
@@ -193,17 +201,14 @@ T = {
         "btn_mic_yes": "🎙 Так",
         "btn_mic_no": "🔇 Ні",
 
-        "btn_goal_kp": "🎯 КП",
-        "btn_goal_siege": "⚔️ Облоги / PvP",
-        "btn_goal_mass": "👥 Масові заходи",
-        "btn_goal_farm": "💰 Фарм / PvE",
-
         "btn_ready_yes": "✅ Готовий стабільно",
         "btn_ready_sometimes": "⚠️ Не завжди",
         "btn_ready_no": "❌ Не готовий",
 
         "preview_title": "🧾 <b>Перевір заявку</b>",
+        "preview_hint": "Якщо все вірно — натисни <b>«Надіслати»</b>.",
         "sent_ok": "✅ <b>Анкету прийнято</b>\n\nРозгляд до 24 годин.\nВідповідь прийде в Telegram при позитивному рішенні.",
+
         "only_private": "Заявка доступна лише в приватних повідомленнях.",
         "invalid_nick": "⚠️ Нік без посилань і @. Повтори:",
         "invalid_no_links": "⚠️ Без посилань і @. Повтори:",
@@ -213,7 +218,20 @@ T = {
         "cooldown": "Повторна заявка доступна через 12 годин.",
         "choose_buttons": "Обери дію кнопками нижче:",
         "discipline_no_user": "❌ Заявку відхилено: дисципліну не підтверджено.",
+
+        "label_nick": "Нік",
+        "label_contact": "Контакт TG",
+        "label_country": "Країна/місто",
+        "label_prof": "Профа/саб",
+        "label_lvl": "Рівень",
+        "label_noble": "Нобл",
+        "label_prime": "Прайм",
+        "label_mic": "Мікрофон/TS",
+        "label_ready": "Готовність",
+        "label_why": "Чому до нас",
+        "label_disc": "Дисципліна",
     },
+
     "en": {
         "lang_pick": "🌍 Choose language / Выбери язык / Оберіть мову:",
         "welcome_title": "🏰 <b>SOBRANIEGOLD — official recruitment</b>",
@@ -238,23 +256,22 @@ T = {
         ),
 
         "form_title": "🧾 <b>Application</b>",
-        "q_nick": "⚔️ (1/12)\n\nEnter your <b>in-game nickname</b>:",
+        "q_nick": "⚔️ (1/11)\n\nEnter your <b>in-game nickname</b>:",
         "q_contact": (
-            "📩 (2/12)\n\nEnter your <b>Telegram contact</b>:\n"
+            "📩 (2/11)\n\nEnter your <b>Telegram contact</b>:\n"
             "• @username\n\n"
             "If you don’t have one — type <b>none</b> or another contact."
         ),
         "use_my_tg": "✅ Use my Telegram",
-        "q_country": "🌍 (3/12)\n\nCountry / City (short):",
-        "q_prof": "🧙‍♂️ (4/12)\n\nClass / Sub (short):\n<i>Example: Necromancer / Bishop</i>",
-        "q_lvl": "🧠 (5/12)\n\nLevel (number):",
-        "q_noble": "🪽 (6/12)\n\nDo you have Noble?",
-        "q_prime": "⏰ (7/12)\n\nPrime time (days + time):\n<i>Example: Mon–Fri 20:00–00:00, weekends more</i>",
-        "q_mic": "🎙 (8/12)\n\nDo you have a mic and can follow voice calls (TS/Discord)?",
-        "q_goal": "⚔️ (9/12)\n\nYour main focus in the clan:",
-        "q_ready": "🛡 (10/12)\n\nAttendance / prime readiness:",
-        "q_why": "⭐ (11/12)\n\nWhy do you want to join <b>SOBRANIEGOLD</b>?\n<i>1–2 sentences</i>",
-        "q_discipline": "📜 (12/12)\n\nWill you follow clan rules and CL/PL decisions?",
+        "q_country": "🌍 (3/11)\n\nCountry / City (short):",
+        "q_prof": "🧙‍♂️ (4/11)\n\nClass / Sub (short):\n<i>Example: Necromancer / Bishop</i>",
+        "q_lvl": "🧠 (5/11)\n\nLevel (number):",
+        "q_noble": "🪽 (6/11)\n\nDo you have Noble?",
+        "q_prime": "⏰ (7/11)\n\nPrime time (days + time):\n<i>Example: Mon–Fri 20:00–00:00, weekends more</i>",
+        "q_mic": "🎙 (8/11)\n\nDo you have a mic and can follow voice calls (TS/Discord)?",
+        "q_ready": "🛡 (9/11)\n\nAttendance / prime readiness:",
+        "q_why": "⭐ (10/11)\n\nWhy do you want to join <b>SOBRANIEGOLD</b>?\n<i>1–2 sentences</i>",
+        "q_discipline": "📜 (11/11)\n\nWill you follow clan rules and CL/PL decisions?",
 
         "btn_yes": "✅ Yes",
         "btn_no": "❌ No",
@@ -263,17 +280,14 @@ T = {
         "btn_mic_yes": "🎙 Yes",
         "btn_mic_no": "🔇 No",
 
-        "btn_goal_kp": "🎯 CP",
-        "btn_goal_siege": "⚔️ Sieges / PvP",
-        "btn_goal_mass": "👥 Mass events",
-        "btn_goal_farm": "💰 Farm / PvE",
-
         "btn_ready_yes": "✅ Ready",
         "btn_ready_sometimes": "⚠️ Sometimes",
         "btn_ready_no": "❌ Not ready",
 
         "preview_title": "🧾 <b>Review your application</b>",
+        "preview_hint": "If everything is correct — tap <b>“Submit”</b>.",
         "sent_ok": "✅ <b>Application received</b>\n\nReview takes up to 24 hours.\nYou will get a reply if approved.",
+
         "only_private": "Please apply in a private chat with the bot.",
         "invalid_nick": "⚠️ No links and no @. Try again:",
         "invalid_no_links": "⚠️ No links and no @. Try again:",
@@ -283,6 +297,18 @@ T = {
         "cooldown": "You can reapply in 12 hours.",
         "choose_buttons": "Use the buttons below:",
         "discipline_no_user": "❌ Rejected: discipline not confirmed.",
+
+        "label_nick": "Nick",
+        "label_contact": "TG contact",
+        "label_country": "Country/City",
+        "label_prof": "Class/Sub",
+        "label_lvl": "Level",
+        "label_noble": "Noble",
+        "label_prime": "Prime",
+        "label_mic": "Mic/TS",
+        "label_ready": "Readiness",
+        "label_why": "Why us",
+        "label_disc": "Discipline",
     },
 }
 
@@ -345,16 +371,6 @@ def k_mic(lang: str) -> InlineKeyboardMarkup:
     return kb.as_markup()
 
 
-def k_goal(lang: str) -> InlineKeyboardMarkup:
-    kb = InlineKeyboardBuilder()
-    kb.button(text=T[lang]["btn_goal_kp"], callback_data="goal:kp")
-    kb.button(text=T[lang]["btn_goal_siege"], callback_data="goal:siege")
-    kb.button(text=T[lang]["btn_goal_mass"], callback_data="goal:mass")
-    kb.button(text=T[lang]["btn_goal_farm"], callback_data="goal:farm")
-    kb.adjust(2, 2)
-    return kb.as_markup()
-
-
 def k_ready(lang: str) -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()
     kb.button(text=T[lang]["btn_ready_yes"], callback_data="ready:yes")
@@ -406,18 +422,6 @@ def human_yesno(lang: str, v: str) -> str:
     return "-"
 
 
-def human_goal(lang: str, v: str) -> str:
-    if v == "kp":
-        return "КП" if lang in {"ru", "uk"} else "CP"
-    if v == "siege":
-        return "осады / PvP" if lang == "ru" else ("облоги / PvP" if lang == "uk" else "sieges / PvP")
-    if v == "mass":
-        return "массовки" if lang == "ru" else ("масові заходи" if lang == "uk" else "mass events")
-    if v == "farm":
-        return "фарм / PvE" if lang == "ru" else ("фарм / PvE" if lang == "uk" else "farm / PvE")
-    return "-"
-
-
 def human_ready(lang: str, v: str) -> str:
     if v == "yes":
         return "готов стабильно" if lang == "ru" else ("готовий стабільно" if lang == "uk" else "ready")
@@ -429,21 +433,23 @@ def human_ready(lang: str, v: str) -> str:
 
 
 def fmt_preview(lang: str, data: dict) -> str:
+    disc_ok = data.get("disc_raw") == "yes"
+    disc_icon = "✅" if disc_ok else "⚠️"
+
     return (
         f"{T[lang]['preview_title']}\n\n"
-        f"⚔️ Nick: <b>{data.get('nick','-')}</b>\n"
-        f"📩 TG: <b>{data.get('contact','-')}</b>\n"
-        f"🌍 Country/City: <b>{data.get('country','-')}</b>\n"
-        f"🧙‍♂️ Class/Sub: <b>{data.get('prof','-')}</b>\n"
-        f"🧠 Level: <b>{data.get('lvl','-')}</b>\n"
-        f"🪽 Noble: <b>{human_noble(lang, data.get('noble_raw','-'))}</b>\n"
-        f"⏰ Prime: <b>{data.get('prime','-')}</b>\n"
-        f"🎙 Mic/TS: <b>{human_yesno(lang, data.get('mic_raw','-'))}</b>\n"
-        f"⚔️ Focus: <b>{human_goal(lang, data.get('goal_raw','-'))}</b>\n"
-        f"🛡 Ready: <b>{human_ready(lang, data.get('ready_raw','-'))}</b>\n"
-        f"⭐ Why: <b>{data.get('why','-')}</b>\n"
-        f"📜 Discipline: <b>{'✅' if data.get('disc_raw')=='yes' else '⚠️'}</b>\n\n"
-        "Если всё верно — нажми кнопку отправки."
+        f"⚔️ {T[lang]['label_nick']}: <b>{data.get('nick','-')}</b>\n"
+        f"📩 {T[lang]['label_contact']}: <b>{data.get('contact','-')}</b>\n"
+        f"🌍 {T[lang]['label_country']}: <b>{data.get('country','-')}</b>\n"
+        f"🧙‍♂️ {T[lang]['label_prof']}: <b>{data.get('prof','-')}</b>\n"
+        f"🧠 {T[lang]['label_lvl']}: <b>{data.get('lvl','-')}</b>\n"
+        f"🪽 {T[lang]['label_noble']}: <b>{human_noble(lang, data.get('noble_raw','-'))}</b>\n"
+        f"⏰ {T[lang]['label_prime']}: <b>{data.get('prime','-')}</b>\n"
+        f"🎙 {T[lang]['label_mic']}: <b>{human_yesno(lang, data.get('mic_raw','-'))}</b>\n"
+        f"🛡 {T[lang]['label_ready']}: <b>{human_ready(lang, data.get('ready_raw','-'))}</b>\n"
+        f"⭐ {T[lang]['label_why']}: <b>{data.get('why','-')}</b>\n"
+        f"📜 {T[lang]['label_disc']}: <b>{disc_icon}</b>\n\n"
+        f"{T[lang]['preview_hint']}"
     )
 
 
@@ -455,7 +461,6 @@ async def guard_private_message(m: Message, lang: str) -> bool:
 
 
 class Form(StatesGroup):
-    lang = State()
     nick = State()
     contact = State()
     country = State()
@@ -464,7 +469,6 @@ class Form(StatesGroup):
     noble = State()
     prime = State()
     mic = State()
-    goal = State()
     ready = State()
     why = State()
     discipline = State()
@@ -483,7 +487,7 @@ async def cb_lang(cq: CallbackQuery, state: FSMContext):
     code = cq.data.split(":", 1)[1]
     if code not in SUPPORTED_LANGS:
         code = "ru"
-    await state.update_data(lang=code)
+    await state.set_data({"lang": code})
     await cq.message.edit_text(build_welcome(code), reply_markup=k_start(code), parse_mode="HTML")
     await cq.answer()
 
@@ -531,7 +535,7 @@ async def cb_start_form(cq: CallbackQuery, state: FSMContext):
     await cq.answer()
 
 
-# ===== 1/12 Nick =====
+# ===== 1/11 Nick =====
 @dp.message(Form.nick)
 async def step_nick(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -575,7 +579,7 @@ async def cb_use_my_tg(cq: CallbackQuery, state: FSMContext):
         await cq.answer("No username", show_alert=True)
 
 
-# ===== 2/12 Contact =====
+# ===== 2/11 Contact =====
 @dp.message(Form.contact)
 async def step_contact(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -603,7 +607,7 @@ async def step_contact(m: Message, state: FSMContext):
     await state.set_state(Form.country)
 
 
-# ===== 3/12 Country =====
+# ===== 3/11 Country =====
 @dp.message(Form.country)
 async def step_country(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -624,7 +628,7 @@ async def step_country(m: Message, state: FSMContext):
     await state.set_state(Form.prof)
 
 
-# ===== 4/12 Prof =====
+# ===== 4/11 Prof =====
 @dp.message(Form.prof)
 async def step_prof(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -645,7 +649,7 @@ async def step_prof(m: Message, state: FSMContext):
     await state.set_state(Form.lvl)
 
 
-# ===== 5/12 Level =====
+# ===== 5/11 Level =====
 @dp.message(Form.lvl)
 async def step_lvl(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -671,7 +675,7 @@ async def step_lvl(m: Message, state: FSMContext):
     await state.set_state(Form.noble)
 
 
-# ===== 6/12 Noble (buttons) =====
+# ===== 6/11 Noble (buttons) =====
 @dp.callback_query(F.data.startswith("noble:"))
 async def cb_noble(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -695,7 +699,7 @@ async def cb_noble(cq: CallbackQuery, state: FSMContext):
     await cq.answer()
 
 
-# ===== 7/12 Prime =====
+# ===== 7/11 Prime =====
 @dp.message(Form.prime)
 async def step_prime(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -716,7 +720,7 @@ async def step_prime(m: Message, state: FSMContext):
     await state.set_state(Form.mic)
 
 
-# ===== 8/12 Mic (buttons) =====
+# ===== 8/11 Mic (buttons) =====
 @dp.callback_query(F.data.startswith("mic:"))
 async def cb_mic(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -731,29 +735,6 @@ async def cb_mic(cq: CallbackQuery, state: FSMContext):
     await state.update_data(mic_raw=val)
 
     await cq.message.edit_text(
-        f"{T[lang]['form_title']}\n\n{T[lang]['q_goal']}",
-        reply_markup=k_goal(lang),
-        parse_mode="HTML",
-    )
-    await state.set_state(Form.goal)
-    await cq.answer()
-
-
-# ===== 9/12 Goal (buttons) =====
-@dp.callback_query(F.data.startswith("goal:"))
-async def cb_goal(cq: CallbackQuery, state: FSMContext):
-    data = await state.get_data()
-    lang = get_lang_from_state(data)
-    if await state.get_state() != Form.goal.state:
-        await cq.answer()
-        return
-
-    val = cq.data.split(":", 1)[1]
-    if val not in {"kp", "siege", "mass", "farm"}:
-        val = "farm"
-    await state.update_data(goal_raw=val)
-
-    await cq.message.edit_text(
         f"{T[lang]['form_title']}\n\n{T[lang]['q_ready']}",
         reply_markup=k_ready(lang),
         parse_mode="HTML",
@@ -762,7 +743,7 @@ async def cb_goal(cq: CallbackQuery, state: FSMContext):
     await cq.answer()
 
 
-# ===== 10/12 Ready (buttons) =====
+# ===== 9/11 Ready (buttons) =====
 @dp.callback_query(F.data.startswith("ready:"))
 async def cb_ready(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -785,7 +766,7 @@ async def cb_ready(cq: CallbackQuery, state: FSMContext):
     await cq.answer()
 
 
-# ===== 11/12 Why =====
+# ===== 10/11 Why =====
 @dp.message(Form.why)
 async def step_why(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -807,7 +788,7 @@ async def step_why(m: Message, state: FSMContext):
     await state.set_state(Form.discipline)
 
 
-# ===== 12/12 Discipline (buttons) =====
+# ===== 11/11 Discipline (buttons) =====
 @dp.callback_query(F.data.startswith("disc:"))
 async def cb_disc(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -822,6 +803,7 @@ async def cb_disc(cq: CallbackQuery, state: FSMContext):
 
     await state.update_data(disc_raw=val)
 
+    # If discipline YES -> go to confirm
     if val == "yes":
         data2 = await state.get_data()
         await cq.message.edit_text(fmt_preview(lang, data2), reply_markup=k_confirm(lang), parse_mode="HTML")
@@ -829,7 +811,7 @@ async def cb_disc(cq: CallbackQuery, state: FSMContext):
         await cq.answer("OK")
         return
 
-    # If discipline is NOT confirmed -> send to admin with warning and stop
+    # If discipline NO -> send to admin as warning and stop
     data2 = await state.get_data()
     user = cq.from_user
 
@@ -845,7 +827,6 @@ async def cb_disc(cq: CallbackQuery, state: FSMContext):
         f"🪽 Noble: <b>{human_noble(lang, data2.get('noble_raw','-'))}</b>\n"
         f"⏰ Prime: <b>{data2.get('prime','-')}</b>\n"
         f"🎙 Mic: <b>{human_yesno(lang, data2.get('mic_raw','-'))}</b>\n"
-        f"⚔️ Focus: <b>{human_goal(lang, data2.get('goal_raw','-'))}</b>\n"
         f"🛡 Ready: <b>{human_ready(lang, data2.get('ready_raw','-'))}</b>\n"
         f"⭐ Why: <b>{data2.get('why','-')}</b>\n"
         f"📜 Discipline: <b>⚠️</b>\n"
@@ -875,6 +856,8 @@ async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
     user = cq.from_user
     data2 = await state.get_data()
 
+    disc_ok = data2.get("disc_raw") == "yes"
+
     admin_msg = (
         "🧾 <b>Новая заявка</b>\n"
         f"🌍 Lang: <b>{lang.upper()}</b>\n"
@@ -887,10 +870,9 @@ async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
         f"🪽 Noble: <b>{human_noble(lang, data2.get('noble_raw','-'))}</b>\n"
         f"⏰ Prime: <b>{data2.get('prime','-')}</b>\n"
         f"🎙 Mic: <b>{human_yesno(lang, data2.get('mic_raw','-'))}</b>\n"
-        f"⚔️ Focus: <b>{human_goal(lang, data2.get('goal_raw','-'))}</b>\n"
         f"🛡 Ready: <b>{human_ready(lang, data2.get('ready_raw','-'))}</b>\n"
         f"⭐ Why: <b>{data2.get('why','-')}</b>\n"
-        f"📜 Discipline: <b>✅</b>\n"
+        f"📜 Discipline: <b>{'✅' if disc_ok else '⚠️'}</b>\n"
         f"⏱ {now.astimezone(timezone(timedelta(hours=3))).strftime('%Y-%m-%d %H:%M')} (UTC+3)"
     )
 
