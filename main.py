@@ -73,9 +73,9 @@ FLAG = {
     "en": "🇺🇸",
 }
 
-# You can tweak wording here later without touching logic
 T = {
     "ru": {
+        "lang_pick": "🌍 Выбери язык / Choose language / Оберіть мову:",
         "welcome_title": "🏰 <b>SOBRANIEGOLD — официальный набор</b>",
         "welcome_body": (
             "Анкеты рассматриваются нашей командой.\n"
@@ -97,7 +97,6 @@ T = {
             "Нажми <b>«Подать заявку»</b>, чтобы начать."
         ),
 
-        "lang_pick": "🌍 Выбери язык / Choose language / Оберіть мову:",
         "form_title": "🧾 <b>Анкета</b>",
         "q_nick": "⚔️ (1/12)\n\nВведи <b>ник в игре</b>:",
         "q_contact": (
@@ -116,6 +115,23 @@ T = {
         "q_ready": "🛡 (10/12)\n\nГотовность к <b>прайму/явке</b>:",
         "q_why": "⭐ (11/12)\n\nПочему ты хочешь вступить именно в <b>SOBRANIEGOLD</b>?\n<i>1–2 предложения</i>",
         "q_discipline": "📜 (12/12)\n\nГотов соблюдать правила клана и решения КЛа/ПЛа?",
+
+        "btn_yes": "✅ Да",
+        "btn_no": "❌ Нет",
+        "btn_progress": "⏳ В процессе",
+
+        "btn_mic_yes": "🎙 Да",
+        "btn_mic_no": "🔇 Нет",
+
+        "btn_goal_kp": "🎯 КП",
+        "btn_goal_siege": "⚔️ Осады / PvP",
+        "btn_goal_mass": "👥 Массовки",
+        "btn_goal_farm": "💰 Фарм / PvE",
+
+        "btn_ready_yes": "✅ Готов стабильно",
+        "btn_ready_sometimes": "⚠️ Не всегда",
+        "btn_ready_no": "❌ Не готов",
+
         "preview_title": "🧾 <b>Проверь заявку</b>",
         "sent_ok": "✅ <b>Анкета принята</b>\n\nРассмотрение занимает до 24 часов.\nОтвет поступит в Telegram при положительном решении.",
         "only_private": "Подача заявки доступна только в личных сообщениях.",
@@ -126,10 +142,10 @@ T = {
         "need_contact": "⚠️ Введи контакт или напиши <b>нет</b>.",
         "cooldown": "Повторная заявка доступна через 12 часов.",
         "choose_buttons": "Выбери действие кнопками ниже:",
-        "cancelled": "Ок, отменил. Если захочешь — подай заявку заново.",
-        "discipline_no": "❌ Заявка отклонена: дисциплина не подтверждена.",
+        "discipline_no_user": "❌ Заявка отклонена: дисциплина не подтверждена.",
     },
     "uk": {
+        "lang_pick": "🌍 Обери мову / Choose language / Выбери язык:",
         "welcome_title": "🏰 <b>SOBRANIEGOLD — офіційний набір</b>",
         "welcome_body": (
             "Анкети розглядає наша команда.\n"
@@ -151,7 +167,6 @@ T = {
             "Натисни <b>«Подати заявку»</b>, щоб почати."
         ),
 
-        "lang_pick": "🌍 Обери мову / Choose language / Выбери язык:",
         "form_title": "🧾 <b>Анкета</b>",
         "q_nick": "⚔️ (1/12)\n\nВведи <b>нік у грі</b>:",
         "q_contact": (
@@ -170,6 +185,23 @@ T = {
         "q_ready": "🛡 (10/12)\n\nГотовність до <b>прайму/явки</b>:",
         "q_why": "⭐ (11/12)\n\nЧому ти хочеш саме в <b>SOBRANIEGOLD</b>?\n<i>1–2 речення</i>",
         "q_discipline": "📜 (12/12)\n\nГотовий дотримуватись правил клану та рішень КЛ/ПЛ?",
+
+        "btn_yes": "✅ Так",
+        "btn_no": "❌ Ні",
+        "btn_progress": "⏳ В процесі",
+
+        "btn_mic_yes": "🎙 Так",
+        "btn_mic_no": "🔇 Ні",
+
+        "btn_goal_kp": "🎯 КП",
+        "btn_goal_siege": "⚔️ Облоги / PvP",
+        "btn_goal_mass": "👥 Масові заходи",
+        "btn_goal_farm": "💰 Фарм / PvE",
+
+        "btn_ready_yes": "✅ Готовий стабільно",
+        "btn_ready_sometimes": "⚠️ Не завжди",
+        "btn_ready_no": "❌ Не готовий",
+
         "preview_title": "🧾 <b>Перевір заявку</b>",
         "sent_ok": "✅ <b>Анкету прийнято</b>\n\nРозгляд до 24 годин.\nВідповідь прийде в Telegram при позитивному рішенні.",
         "only_private": "Заявка доступна лише в приватних повідомленнях.",
@@ -180,10 +212,10 @@ T = {
         "need_contact": "⚠️ Введи контакт або напиши <b>нема</b>.",
         "cooldown": "Повторна заявка доступна через 12 годин.",
         "choose_buttons": "Обери дію кнопками нижче:",
-        "cancelled": "Ок, скасовано. Якщо захочеш — подай заявку знову.",
-        "discipline_no": "❌ Заявку відхилено: дисципліна не підтверджена.",
+        "discipline_no_user": "❌ Заявку відхилено: дисципліну не підтверджено.",
     },
     "en": {
+        "lang_pick": "🌍 Choose language / Выбери язык / Оберіть мову:",
         "welcome_title": "🏰 <b>SOBRANIEGOLD — official recruitment</b>",
         "welcome_body": (
             "Applications are reviewed by our staff.\n"
@@ -205,7 +237,6 @@ T = {
             "Tap <b>“Apply”</b> to start."
         ),
 
-        "lang_pick": "🌍 Choose language / Выбери язык / Оберіть мову:",
         "form_title": "🧾 <b>Application</b>",
         "q_nick": "⚔️ (1/12)\n\nEnter your <b>in-game nickname</b>:",
         "q_contact": (
@@ -224,6 +255,23 @@ T = {
         "q_ready": "🛡 (10/12)\n\nAttendance / prime readiness:",
         "q_why": "⭐ (11/12)\n\nWhy do you want to join <b>SOBRANIEGOLD</b>?\n<i>1–2 sentences</i>",
         "q_discipline": "📜 (12/12)\n\nWill you follow clan rules and CL/PL decisions?",
+
+        "btn_yes": "✅ Yes",
+        "btn_no": "❌ No",
+        "btn_progress": "⏳ In progress",
+
+        "btn_mic_yes": "🎙 Yes",
+        "btn_mic_no": "🔇 No",
+
+        "btn_goal_kp": "🎯 CP",
+        "btn_goal_siege": "⚔️ Sieges / PvP",
+        "btn_goal_mass": "👥 Mass events",
+        "btn_goal_farm": "💰 Farm / PvE",
+
+        "btn_ready_yes": "✅ Ready",
+        "btn_ready_sometimes": "⚠️ Sometimes",
+        "btn_ready_no": "❌ Not ready",
+
         "preview_title": "🧾 <b>Review your application</b>",
         "sent_ok": "✅ <b>Application received</b>\n\nReview takes up to 24 hours.\nYou will get a reply if approved.",
         "only_private": "Please apply in a private chat with the bot.",
@@ -234,8 +282,7 @@ T = {
         "need_contact": "⚠️ Enter a contact or type <b>none</b>.",
         "cooldown": "You can reapply in 12 hours.",
         "choose_buttons": "Use the buttons below:",
-        "cancelled": "Cancelled. You can apply again anytime.",
-        "discipline_no": "❌ Rejected: discipline not confirmed.",
+        "discipline_no_user": "❌ Rejected: discipline not confirmed.",
     },
 }
 
@@ -245,7 +292,10 @@ def get_lang_from_state(data: dict) -> str:
     return lang if lang in SUPPORTED_LANGS else "ru"
 
 
-# ===== Keyboards =====
+def build_welcome(lang: str) -> str:
+    return f"{T[lang]['welcome_title']}\n\n{T[lang]['welcome_body']}"
+
+
 def k_lang() -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()
     for code in SUPPORTED_LANGS:
@@ -280,44 +330,44 @@ def k_confirm(lang: str) -> InlineKeyboardMarkup:
 
 def k_noble(lang: str) -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()
-    kb.button(text="🪽 Yes", callback_data="noble:yes")
-    kb.button(text="⬛ No", callback_data="noble:no")
-    kb.button(text="⏳ In progress", callback_data="noble:progress")
+    kb.button(text=T[lang]["btn_yes"], callback_data="noble:yes")
+    kb.button(text=T[lang]["btn_no"], callback_data="noble:no")
+    kb.button(text=T[lang]["btn_progress"], callback_data="noble:progress")
     kb.adjust(2, 1)
     return kb.as_markup()
 
 
 def k_mic(lang: str) -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()
-    kb.button(text="🎙 Yes", callback_data="mic:yes")
-    kb.button(text="🔇 No", callback_data="mic:no")
+    kb.button(text=T[lang]["btn_mic_yes"], callback_data="mic:yes")
+    kb.button(text=T[lang]["btn_mic_no"], callback_data="mic:no")
     kb.adjust(2)
     return kb.as_markup()
 
 
 def k_goal(lang: str) -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()
-    kb.button(text="🎯 CP", callback_data="goal:kp")
-    kb.button(text="⚔️ Sieges/PvP", callback_data="goal:siege")
-    kb.button(text="👥 Mass", callback_data="goal:mass")
-    kb.button(text="💰 Farm/PvE", callback_data="goal:farm")
+    kb.button(text=T[lang]["btn_goal_kp"], callback_data="goal:kp")
+    kb.button(text=T[lang]["btn_goal_siege"], callback_data="goal:siege")
+    kb.button(text=T[lang]["btn_goal_mass"], callback_data="goal:mass")
+    kb.button(text=T[lang]["btn_goal_farm"], callback_data="goal:farm")
     kb.adjust(2, 2)
     return kb.as_markup()
 
 
 def k_ready(lang: str) -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()
-    kb.button(text="✅ Ready", callback_data="ready:yes")
-    kb.button(text="⚠️ Sometimes", callback_data="ready:sometimes")
-    kb.button(text="❌ Not ready", callback_data="ready:no")
+    kb.button(text=T[lang]["btn_ready_yes"], callback_data="ready:yes")
+    kb.button(text=T[lang]["btn_ready_sometimes"], callback_data="ready:sometimes")
+    kb.button(text=T[lang]["btn_ready_no"], callback_data="ready:no")
     kb.adjust(1)
     return kb.as_markup()
 
 
 def k_discipline(lang: str) -> InlineKeyboardMarkup:
     kb = InlineKeyboardBuilder()
-    kb.button(text="✅ Yes", callback_data="disc:yes")
-    kb.button(text="❌ No", callback_data="disc:no")
+    kb.button(text=T[lang]["btn_yes"], callback_data="disc:yes")
+    kb.button(text=T[lang]["btn_no"], callback_data="disc:no")
     kb.adjust(2)
     return kb.as_markup()
 
@@ -338,26 +388,61 @@ def k_admin_contact(user_id: int) -> InlineKeyboardMarkup:
     return kb.as_markup()
 
 
-# ===== Text helpers =====
-def build_welcome(lang: str) -> str:
-    return f"{T[lang]['welcome_title']}\n\n{T[lang]['welcome_body']}"
+def human_noble(lang: str, v: str) -> str:
+    if v == "yes":
+        return "да" if lang == "ru" else ("так" if lang == "uk" else "yes")
+    if v == "no":
+        return "нет" if lang == "ru" else ("ні" if lang == "uk" else "no")
+    if v == "progress":
+        return "в процессе" if lang == "ru" else ("в процесі" if lang == "uk" else "in progress")
+    return "-"
+
+
+def human_yesno(lang: str, v: str) -> str:
+    if v == "yes":
+        return "да" if lang == "ru" else ("так" if lang == "uk" else "yes")
+    if v == "no":
+        return "нет" if lang == "ru" else ("ні" if lang == "uk" else "no")
+    return "-"
+
+
+def human_goal(lang: str, v: str) -> str:
+    if v == "kp":
+        return "КП" if lang in {"ru", "uk"} else "CP"
+    if v == "siege":
+        return "осады / PvP" if lang == "ru" else ("облоги / PvP" if lang == "uk" else "sieges / PvP")
+    if v == "mass":
+        return "массовки" if lang == "ru" else ("масові заходи" if lang == "uk" else "mass events")
+    if v == "farm":
+        return "фарм / PvE" if lang == "ru" else ("фарм / PvE" if lang == "uk" else "farm / PvE")
+    return "-"
+
+
+def human_ready(lang: str, v: str) -> str:
+    if v == "yes":
+        return "готов стабильно" if lang == "ru" else ("готовий стабільно" if lang == "uk" else "ready")
+    if v == "sometimes":
+        return "не всегда" if lang == "ru" else ("не завжди" if lang == "uk" else "sometimes")
+    if v == "no":
+        return "не готов" if lang == "ru" else ("не готовий" if lang == "uk" else "not ready")
+    return "-"
 
 
 def fmt_preview(lang: str, data: dict) -> str:
     return (
         f"{T[lang]['preview_title']}\n\n"
         f"⚔️ Nick: <b>{data.get('nick','-')}</b>\n"
-        f"📩 TG contact: <b>{data.get('contact','-')}</b>\n"
+        f"📩 TG: <b>{data.get('contact','-')}</b>\n"
         f"🌍 Country/City: <b>{data.get('country','-')}</b>\n"
         f"🧙‍♂️ Class/Sub: <b>{data.get('prof','-')}</b>\n"
         f"🧠 Level: <b>{data.get('lvl','-')}</b>\n"
-        f"🪽 Noble: <b>{data.get('noble','-')}</b>\n"
+        f"🪽 Noble: <b>{human_noble(lang, data.get('noble_raw','-'))}</b>\n"
         f"⏰ Prime: <b>{data.get('prime','-')}</b>\n"
-        f"🎙 Mic/TS: <b>{data.get('mic','-')}</b>\n"
-        f"⚔️ Focus: <b>{data.get('goal','-')}</b>\n"
-        f"🛡 Attendance: <b>{data.get('ready','-')}</b>\n"
-        f"⭐ Why SOBRANIEGOLD: <b>{data.get('why','-')}</b>\n"
-        f"📜 Discipline: <b>{data.get('discipline','-')}</b>\n\n"
+        f"🎙 Mic/TS: <b>{human_yesno(lang, data.get('mic_raw','-'))}</b>\n"
+        f"⚔️ Focus: <b>{human_goal(lang, data.get('goal_raw','-'))}</b>\n"
+        f"🛡 Ready: <b>{human_ready(lang, data.get('ready_raw','-'))}</b>\n"
+        f"⭐ Why: <b>{data.get('why','-')}</b>\n"
+        f"📜 Discipline: <b>{'✅' if data.get('disc_raw')=='yes' else '⚠️'}</b>\n\n"
         "Если всё верно — нажми кнопку отправки."
     )
 
@@ -369,7 +454,6 @@ async def guard_private_message(m: Message, lang: str) -> bool:
     return True
 
 
-# ===== States =====
 class Form(StatesGroup):
     lang = State()
     nick = State()
@@ -387,11 +471,10 @@ class Form(StatesGroup):
     confirm = State()
 
 
-# ===== Start / Language =====
+# ===== START =====
 @dp.message(CommandStart())
 async def cmd_start(m: Message, state: FSMContext):
     await state.clear()
-    # Always ask language first
     await m.answer(T["ru"]["lang_pick"], reply_markup=k_lang(), parse_mode="HTML")
 
 
@@ -415,10 +498,7 @@ async def cb_info(cq: CallbackQuery, state: FSMContext):
 
 @dp.callback_query(F.data == "cancel")
 async def cb_cancel(cq: CallbackQuery, state: FSMContext):
-    data = await state.get_data()
-    lang = get_lang_from_state(data)
     await state.clear()
-    # After cancel -> ask language again (requirement: always ask language)
     await cq.message.edit_text(T["ru"]["lang_pick"], reply_markup=k_lang(), parse_mode="HTML")
     await cq.answer()
 
@@ -427,7 +507,6 @@ async def cb_cancel(cq: CallbackQuery, state: FSMContext):
 async def cb_restart(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     lang = get_lang_from_state(data)
-    # Keep language, clear other fields
     await state.set_data({"lang": lang})
     await cq.message.edit_text(
         f"{T[lang]['form_title']}\n\n{T[lang]['q_nick']}",
@@ -442,7 +521,6 @@ async def cb_restart(cq: CallbackQuery, state: FSMContext):
 async def cb_start_form(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     lang = get_lang_from_state(data)
-    # Keep language, reset form data
     await state.set_data({"lang": lang})
     await cq.message.edit_text(
         f"{T[lang]['form_title']}\n\n{T[lang]['q_nick']}",
@@ -453,7 +531,7 @@ async def cb_start_form(cq: CallbackQuery, state: FSMContext):
     await cq.answer()
 
 
-# ===== Step 1: Nick =====
+# ===== 1/12 Nick =====
 @dp.message(Form.nick)
 async def step_nick(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -497,7 +575,7 @@ async def cb_use_my_tg(cq: CallbackQuery, state: FSMContext):
         await cq.answer("No username", show_alert=True)
 
 
-# ===== Step 2: Contact =====
+# ===== 2/12 Contact =====
 @dp.message(Form.contact)
 async def step_contact(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -525,7 +603,7 @@ async def step_contact(m: Message, state: FSMContext):
     await state.set_state(Form.country)
 
 
-# ===== Step 3: Country/City =====
+# ===== 3/12 Country =====
 @dp.message(Form.country)
 async def step_country(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -546,7 +624,7 @@ async def step_country(m: Message, state: FSMContext):
     await state.set_state(Form.prof)
 
 
-# ===== Step 4: Class/Sub =====
+# ===== 4/12 Prof =====
 @dp.message(Form.prof)
 async def step_prof(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -567,7 +645,7 @@ async def step_prof(m: Message, state: FSMContext):
     await state.set_state(Form.lvl)
 
 
-# ===== Step 5: Level =====
+# ===== 5/12 Level =====
 @dp.message(Form.lvl)
 async def step_lvl(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -593,7 +671,7 @@ async def step_lvl(m: Message, state: FSMContext):
     await state.set_state(Form.noble)
 
 
-# ===== Step 6: Noble (buttons) =====
+# ===== 6/12 Noble (buttons) =====
 @dp.callback_query(F.data.startswith("noble:"))
 async def cb_noble(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -603,9 +681,10 @@ async def cb_noble(cq: CallbackQuery, state: FSMContext):
         return
 
     val = cq.data.split(":", 1)[1]
-    noble_map = {"yes": "yes", "no": "no", "progress": "in progress"}
-    noble = noble_map.get(val, "-")
-    await state.update_data(noble=noble)
+    if val not in {"yes", "no", "progress"}:
+        val = "no"
+
+    await state.update_data(noble_raw=val)
 
     await cq.message.edit_text(
         f"{T[lang]['form_title']}\n\n{T[lang]['q_prime']}",
@@ -616,7 +695,7 @@ async def cb_noble(cq: CallbackQuery, state: FSMContext):
     await cq.answer()
 
 
-# ===== Step 7: Prime =====
+# ===== 7/12 Prime =====
 @dp.message(Form.prime)
 async def step_prime(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -637,7 +716,7 @@ async def step_prime(m: Message, state: FSMContext):
     await state.set_state(Form.mic)
 
 
-# ===== Step 8: Mic (buttons) =====
+# ===== 8/12 Mic (buttons) =====
 @dp.callback_query(F.data.startswith("mic:"))
 async def cb_mic(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -647,12 +726,12 @@ async def cb_mic(cq: CallbackQuery, state: FSMContext):
         return
 
     val = cq.data.split(":", 1)[1]
-    mic = "yes" if val == "yes" else "no"
-    await state.update_data(mic=mic)
+    if val not in {"yes", "no"}:
+        val = "no"
+    await state.update_data(mic_raw=val)
 
     await cq.message.edit_text(
-        f"{T[lang]['form_title']}\n\n{T[lang]['q_goal']}\n\n"
-        "🎯 CP (discipline, prime)\n⚔️ Sieges/PvP\n👥 Mass events\n💰 Farm/PvE",
+        f"{T[lang]['form_title']}\n\n{T[lang]['q_goal']}",
         reply_markup=k_goal(lang),
         parse_mode="HTML",
     )
@@ -660,7 +739,7 @@ async def cb_mic(cq: CallbackQuery, state: FSMContext):
     await cq.answer()
 
 
-# ===== Step 9: Goal (buttons) =====
+# ===== 9/12 Goal (buttons) =====
 @dp.callback_query(F.data.startswith("goal:"))
 async def cb_goal(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -670,8 +749,9 @@ async def cb_goal(cq: CallbackQuery, state: FSMContext):
         return
 
     val = cq.data.split(":", 1)[1]
-    goal_map = {"kp": "CP", "siege": "Sieges/PvP", "mass": "Mass", "farm": "Farm/PvE"}
-    await state.update_data(goal=goal_map.get(val, "-"))
+    if val not in {"kp", "siege", "mass", "farm"}:
+        val = "farm"
+    await state.update_data(goal_raw=val)
 
     await cq.message.edit_text(
         f"{T[lang]['form_title']}\n\n{T[lang]['q_ready']}",
@@ -682,7 +762,7 @@ async def cb_goal(cq: CallbackQuery, state: FSMContext):
     await cq.answer()
 
 
-# ===== Step 10: Ready (buttons) =====
+# ===== 10/12 Ready (buttons) =====
 @dp.callback_query(F.data.startswith("ready:"))
 async def cb_ready(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -692,8 +772,9 @@ async def cb_ready(cq: CallbackQuery, state: FSMContext):
         return
 
     val = cq.data.split(":", 1)[1]
-    ready_map = {"yes": "ready", "sometimes": "sometimes", "no": "not ready"}
-    await state.update_data(ready=ready_map.get(val, "-"))
+    if val not in {"yes", "sometimes", "no"}:
+        val = "no"
+    await state.update_data(ready_raw=val)
 
     await cq.message.edit_text(
         f"{T[lang]['form_title']}\n\n{T[lang]['q_why']}",
@@ -704,7 +785,7 @@ async def cb_ready(cq: CallbackQuery, state: FSMContext):
     await cq.answer()
 
 
-# ===== Step 11: Why =====
+# ===== 11/12 Why =====
 @dp.message(Form.why)
 async def step_why(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -726,7 +807,7 @@ async def step_why(m: Message, state: FSMContext):
     await state.set_state(Form.discipline)
 
 
-# ===== Step 12: Discipline (buttons) =====
+# ===== 12/12 Discipline (buttons) =====
 @dp.callback_query(F.data.startswith("disc:"))
 async def cb_disc(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
@@ -736,41 +817,44 @@ async def cb_disc(cq: CallbackQuery, state: FSMContext):
         return
 
     val = cq.data.split(":", 1)[1]
+    if val not in {"yes", "no"}:
+        val = "no"
+
+    await state.update_data(disc_raw=val)
+
     if val == "yes":
-        # confirmed -> "all good" icon
-        await state.update_data(discipline="✅ confirmed")
-        data = await state.get_data()
-        await cq.message.edit_text(fmt_preview(lang, data), reply_markup=k_confirm(lang), parse_mode="HTML")
+        data2 = await state.get_data()
+        await cq.message.edit_text(fmt_preview(lang, data2), reply_markup=k_confirm(lang), parse_mode="HTML")
         await state.set_state(Form.confirm)
         await cq.answer("OK")
-    else:
-        # not confirmed -> send to admin with warning and stop
-        await state.update_data(discipline="⚠️ NOT confirmed")
-        data2 = await state.get_data()
-        user = cq.from_user
+        return
 
-        admin_msg = (
-            "🧾 <b>Новая заявка (дисциплина НЕ подтверждена)</b>\n"
-            f"🌍 Lang: <b>{get_lang_from_state(data2).upper()}</b>\n"
-            f"👤 TG: {user.full_name} (id: <code>{user.id}</code>)\n"
-            f"📩 Contact: <b>{data2.get('contact','-')}</b>\n\n"
-            f"⚔️ Nick: <b>{data2.get('nick','-')}</b>\n"
-            f"🌍 Country/City: <b>{data2.get('country','-')}</b>\n"
-            f"🧙‍♂️ Class/Sub: <b>{data2.get('prof','-')}</b>\n"
-            f"🧠 Level: <b>{data2.get('lvl','-')}</b>\n"
-            f"🪽 Noble: <b>{data2.get('noble','-')}</b>\n"
-            f"⏰ Prime: <b>{data2.get('prime','-')}</b>\n"
-            f"🎙 Mic: <b>{data2.get('mic','-')}</b>\n"
-            f"⚔️ Focus: <b>{data2.get('goal','-')}</b>\n"
-            f"🛡 Ready: <b>{data2.get('ready','-')}</b>\n"
-            f"⭐ Why: <b>{data2.get('why','-')}</b>\n"
-            f"📜 Discipline: <b>{data2.get('discipline','-')}</b>\n"
-        )
+    # If discipline is NOT confirmed -> send to admin with warning and stop
+    data2 = await state.get_data()
+    user = cq.from_user
 
-        await bot.send_message(ADMIN_CHAT_ID, admin_msg, parse_mode="HTML", reply_markup=k_admin_contact(user.id))
-        await state.clear()
-        await cq.message.edit_text(T[lang]["discipline_no"], parse_mode="HTML")
-        await cq.answer()
+    admin_msg = (
+        "🧾 <b>Новая заявка (дисциплина НЕ подтверждена)</b>\n"
+        f"🌍 Lang: <b>{lang.upper()}</b>\n"
+        f"👤 TG: {user.full_name} (id: <code>{user.id}</code>)\n"
+        f"📩 Contact: <b>{data2.get('contact','-')}</b>\n\n"
+        f"⚔️ Nick: <b>{data2.get('nick','-')}</b>\n"
+        f"🌍 Country/City: <b>{data2.get('country','-')}</b>\n"
+        f"🧙‍♂️ Class/Sub: <b>{data2.get('prof','-')}</b>\n"
+        f"🧠 Level: <b>{data2.get('lvl','-')}</b>\n"
+        f"🪽 Noble: <b>{human_noble(lang, data2.get('noble_raw','-'))}</b>\n"
+        f"⏰ Prime: <b>{data2.get('prime','-')}</b>\n"
+        f"🎙 Mic: <b>{human_yesno(lang, data2.get('mic_raw','-'))}</b>\n"
+        f"⚔️ Focus: <b>{human_goal(lang, data2.get('goal_raw','-'))}</b>\n"
+        f"🛡 Ready: <b>{human_ready(lang, data2.get('ready_raw','-'))}</b>\n"
+        f"⭐ Why: <b>{data2.get('why','-')}</b>\n"
+        f"📜 Discipline: <b>⚠️</b>\n"
+    )
+
+    await bot.send_message(ADMIN_CHAT_ID, admin_msg, parse_mode="HTML", reply_markup=k_admin_contact(user.id))
+    await state.clear()
+    await cq.message.edit_text(T[lang]["discipline_no_user"], parse_mode="HTML")
+    await cq.answer()
 
 
 # ===== Confirm send =====
@@ -782,7 +866,6 @@ async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
         await cq.answer()
         return
 
-    # cooldown
     now = datetime.now(timezone.utc)
     prev = last_submit.get(cq.from_user.id)
     if prev and now - prev < timedelta(hours=COOLDOWN_HOURS):
@@ -790,23 +873,24 @@ async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
         return
 
     user = cq.from_user
+    data2 = await state.get_data()
 
     admin_msg = (
         "🧾 <b>Новая заявка</b>\n"
         f"🌍 Lang: <b>{lang.upper()}</b>\n"
         f"👤 TG: {user.full_name} (id: <code>{user.id}</code>)\n"
-        f"📩 Contact: <b>{data.get('contact','-')}</b>\n\n"
-        f"⚔️ Nick: <b>{data.get('nick','-')}</b>\n"
-        f"🌍 Country/City: <b>{data.get('country','-')}</b>\n"
-        f"🧙‍♂️ Class/Sub: <b>{data.get('prof','-')}</b>\n"
-        f"🧠 Level: <b>{data.get('lvl','-')}</b>\n"
-        f"🪽 Noble: <b>{data.get('noble','-')}</b>\n"
-        f"⏰ Prime: <b>{data.get('prime','-')}</b>\n"
-        f"🎙 Mic: <b>{data.get('mic','-')}</b>\n"
-        f"⚔️ Focus: <b>{data.get('goal','-')}</b>\n"
-        f"🛡 Ready: <b>{data.get('ready','-')}</b>\n"
-        f"⭐ Why: <b>{data.get('why','-')}</b>\n"
-        f"📜 Discipline: <b>{data.get('discipline','-')}</b>\n"
+        f"📩 Contact: <b>{data2.get('contact','-')}</b>\n\n"
+        f"⚔️ Nick: <b>{data2.get('nick','-')}</b>\n"
+        f"🌍 Country/City: <b>{data2.get('country','-')}</b>\n"
+        f"🧙‍♂️ Class/Sub: <b>{data2.get('prof','-')}</b>\n"
+        f"🧠 Level: <b>{data2.get('lvl','-')}</b>\n"
+        f"🪽 Noble: <b>{human_noble(lang, data2.get('noble_raw','-'))}</b>\n"
+        f"⏰ Prime: <b>{data2.get('prime','-')}</b>\n"
+        f"🎙 Mic: <b>{human_yesno(lang, data2.get('mic_raw','-'))}</b>\n"
+        f"⚔️ Focus: <b>{human_goal(lang, data2.get('goal_raw','-'))}</b>\n"
+        f"🛡 Ready: <b>{human_ready(lang, data2.get('ready_raw','-'))}</b>\n"
+        f"⭐ Why: <b>{data2.get('why','-')}</b>\n"
+        f"📜 Discipline: <b>✅</b>\n"
         f"⏱ {now.astimezone(timezone(timedelta(hours=3))).strftime('%Y-%m-%d %H:%M')} (UTC+3)"
     )
 
@@ -815,7 +899,6 @@ async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
     last_submit[user.id] = now
     await state.clear()
 
-    # After success -> ask language again (requirement: always ask language)
     await cq.message.edit_text(T[lang]["sent_ok"], parse_mode="HTML")
     await cq.answer("OK")
 
