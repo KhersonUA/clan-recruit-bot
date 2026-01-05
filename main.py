@@ -13,7 +13,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from fastapi import FastAPI, Request
 from fastapi.responses import Response
 
-# ===== ENV =====
+# ===================== ENV =====================
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_CHAT_ID = int(os.getenv("ADMIN_CHAT_ID", "0"))
 PUBLIC_URL = os.getenv("PUBLIC_URL", "").rstrip("/")
@@ -31,10 +31,8 @@ bot = Bot(BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 app = FastAPI()
 
-# ===== Anti-spam =====
+# ===================== Anti-spam =====================
 last_submit: dict[int, datetime] = {}
-
-# Запрещаем ссылки/@ почти везде (кроме контакта TG)
 LINK_RE = re.compile(r"(https?://|t\.me/|www\.)", re.IGNORECASE)
 AT_RE = re.compile(r"@", re.IGNORECASE)
 
@@ -43,16 +41,6 @@ def bad_text_general(s: str) -> bool:
     return (not s) or bool(LINK_RE.search(s)) or bool(AT_RE.search(s))
 
 def normalize_contact(raw: str) -> str:
-    """
-    Принимаем:
-      @username
-      username
-      t.me/username
-      https://t.me/username
-    Возвращаем:
-      @username (если похоже на username),
-      иначе исходное (обрезанное).
-    """
     s = (raw or "").strip()
     s = s.replace("https://", "").replace("http://", "")
     s = s.replace("t.me/", "").replace("telegram.me/", "")
@@ -62,7 +50,7 @@ def normalize_contact(raw: str) -> str:
         return f"@{s}"
     return (raw or "").strip()[:64]
 
-# ===== i18n =====
+# ===================== i18n =====================
 SUPPORTED_LANGS = ("ru", "ua", "en")
 
 TXT = {
@@ -99,6 +87,7 @@ TXT = {
         ),
         "use_my_tg": "👤 Использовать мой Telegram",
         "step2_empty": "⚠️ Введи контакт или напиши <b>нет</b>.",
+        "no_username_alert": "У тебя нет @username в Telegram.",
 
         "step3": "Укажи <b>страна / город</b> (коротко):",
         "step3_bad": "⚠️ Без ссылок и @. Напиши страна/город:",
@@ -157,7 +146,6 @@ TXT = {
         ),
         "private_only": "Подача заявки доступна только в личных сообщениях.",
         "lang_already": "Язык уже выбран.",
-        "no_username_alert": "У тебя нет @username в Telegram.",
     },
 
     "ua": {
@@ -193,6 +181,7 @@ TXT = {
         ),
         "use_my_tg": "👤 Використати мій Telegram",
         "step2_empty": "⚠️ Введи контакт або напиши <b>ні</b>.",
+        "no_username_alert": "У тебе немає @username у Telegram.",
 
         "step3": "Вкажи <b>країна / місто</b> (коротко):",
         "step3_bad": "⚠️ Без посилань і @. Напиши країна/місто:",
@@ -251,7 +240,6 @@ TXT = {
         ),
         "private_only": "Подання заявки доступне лише в особистих повідомленнях.",
         "lang_already": "Мову вже обрано.",
-        "no_username_alert": "У тебе немає @username у Telegram.",
     },
 
     "en": {
@@ -287,6 +275,7 @@ TXT = {
         ),
         "use_my_tg": "👤 Use my Telegram",
         "step2_empty": "⚠️ Enter contact or type <b>no</b>.",
+        "no_username_alert": "You don't have a Telegram @username.",
 
         "step3": "Enter <b>country / city</b> (short):",
         "step3_bad": "⚠️ No links and no @. Enter country/city:",
@@ -345,14 +334,17 @@ TXT = {
         ),
         "private_only": "Application is available only in private messages.",
         "lang_already": "Language already selected.",
-        "no_username_alert": "You don't have a Telegram @username.",
     },
 }
 
 def safe_lang(lang: str | None) -> str:
     return lang if lang in SUPPORTED_LANGS else "ru"
 
-# ===== Keyboards =====
+def get_selected_lang(data: dict) -> str | None:
+    lang = data.get("lang")
+    return lang if lang in SUPPORTED_LANGS else None
+
+# ===================== Keyboards =====================
 def k_lang():
     kb = InlineKeyboardBuilder()
     kb.button(text="🇷🇺 RU Русский", callback_data="lang:ru")
@@ -431,23 +423,24 @@ def k_admin_contact(user_id: int):
     kb.button(text="✉️ Связаться с игроком", url=f"tg://user?id={user_id}")
     return kb.as_markup()
 
-# ===== FSM =====
+# ===================== FSM =====================
 class Form(StatesGroup):
     lang = State()
-    nick = State()       # 1/11
-    contact = State()    # 2/11
-    country = State()    # 3/11
-    prof = State()       # 4/11
-    lvl = State()        # 5/11
-    noble = State()      # 6/11
-    prime = State()      # 7/11
-    mic = State()        # 8/11
-    ready = State()      # 9/11
-    why = State()        # 10/11
-    discipline = State() # 11/11
+    nick = State()
+    contact = State()
+    country = State()
+    prof = State()
+    lvl = State()
+    noble = State()
+    prime = State()
+    mic = State()
+    ready = State()
+    why = State()
+    discipline = State()
     confirm = State()
 
-async def guard_private_message(m: Message, lang: str):
+# ===================== Helpers =====================
+async def guard_private_message(m: Message, lang: str) -> bool:
     if m.chat.type != "private":
         await m.answer(TXT[lang]["private_only"], parse_mode="HTML")
         return False
@@ -455,40 +448,139 @@ async def guard_private_message(m: Message, lang: str):
 
 def fmt_preview(lang: str, data: dict) -> str:
     t = TXT[lang]
+    label = {
+        "ru": ("Ник", "Контакт TG", "Страна/город", "Профа/Саб", "Уровень", "Нобл", "Прайм", "Микрофон", "Готовность", "Почему клан", "Дисциплина"),
+        "ua": ("Нік", "Контакт TG", "Країна/місто", "Профа/Саб", "Рівень", "Нобл", "Прайм", "Мікрофон", "Готовність", "Чому клан", "Дисципліна"),
+        "en": ("Nick", "TG contact", "Country/City", "Class/Sub", "Level", "Noble", "Prime time", "Mic", "Readiness", "Why clan", "Discipline"),
+    }[lang]
+
     return (
         f"{t['preview_title']}\n\n"
-        f"1) {('Ник' if lang=='ru' else 'Нік' if lang=='ua' else 'Nick')}: <b>{data.get('nick','-')}</b>\n"
-        f"2) {('Контакт TG' if lang=='ru' else 'Контакт TG' if lang=='ua' else 'TG contact')}: <b>{data.get('contact','-')}</b>\n"
-        f"3) {('Страна/город' if lang=='ru' else 'Країна/місто' if lang=='ua' else 'Country/City')}: <b>{data.get('country','-')}</b>\n"
-        f"4) {('Профа/Саб' if lang=='ru' else 'Профа/Саб' if lang=='ua' else 'Class/Sub')}: <b>{data.get('prof','-')}</b>\n"
-        f"5) {('Уровень' if lang=='ru' else 'Рівень' if lang=='ua' else 'Level')}: <b>{data.get('lvl','-')}</b>\n"
-        f"6) {('Нобл' if lang=='ru' else 'Нобл' if lang=='ua' else 'Noble')}: <b>{data.get('noble','-')}</b>\n"
-        f"7) {('Прайм' if lang=='ru' else 'Прайм' if lang=='ua' else 'Prime time')}: <b>{data.get('prime','-')}</b>\n"
-        f"8) {('Микрофон' if lang=='ru' else 'Мікрофон' if lang=='ua' else 'Mic')}: <b>{data.get('mic','-')}</b>\n"
-        f"9) {('Готовность' if lang=='ru' else 'Готовність' if lang=='ua' else 'Readiness')}: <b>{data.get('ready','-')}</b>\n"
-        f"10) {('Почему клан' if lang=='ru' else 'Чому клан' if lang=='ua' else 'Why clan')}: <b>{data.get('why','-')}</b>\n"
-        f"11) {('Дисциплина' if lang=='ru' else 'Дисципліна' if lang=='ua' else 'Discipline')}: <b>{data.get('discipline','-')}</b>\n\n"
+        f"1) {label[0]}: <b>{data.get('nick','-')}</b>\n"
+        f"2) {label[1]}: <b>{data.get('contact','-')}</b>\n"
+        f"3) {label[2]}: <b>{data.get('country','-')}</b>\n"
+        f"4) {label[3]}: <b>{data.get('prof','-')}</b>\n"
+        f"5) {label[4]}: <b>{data.get('lvl','-')}</b>\n"
+        f"6) {label[5]}: <b>{data.get('noble','-')}</b>\n"
+        f"7) {label[6]}: <b>{data.get('prime','-')}</b>\n"
+        f"8) {label[7]}: <b>{data.get('mic','-')}</b>\n"
+        f"9) {label[8]}: <b>{data.get('ready','-')}</b>\n"
+        f"10) {label[9]}: <b>{data.get('why','-')}</b>\n"
+        f"11) {label[10]}: <b>{data.get('discipline','-')}</b>\n\n"
         f"{t['preview_submit']}"
     )
 
-# ===== /start =====
+def to_ru_value(field: str, value: str, user_lang: str) -> str:
+    v = (value or "").strip().lower()
+    ul = user_lang
+
+    # contact
+    if field == "contact":
+        if v in {"no", "none", "нет", "ні", "нема"}:
+            return "нет"
+        return value
+
+    # noble
+    if field == "noble":
+        maps = {
+            "ru": {"да": "да", "нет": "нет", "в процессе": "в процессе"},
+            "ua": {"так": "да", "ні": "нет", "в процесі": "в процессе"},
+            "en": {"yes": "да", "no": "нет", "in progress": "в процессе"},
+        }
+        return maps.get(ul, {}).get(v, value)
+
+    # mic
+    if field == "mic":
+        maps = {
+            "ru": {"да": "да", "нет": "нет"},
+            "ua": {"так": "да", "ні": "нет"},
+            "en": {"yes": "да", "no": "нет"},
+        }
+        return maps.get(ul, {}).get(v, value)
+
+    # ready
+    if field == "ready":
+        maps = {
+            "ru": {"готов стабильно": "готов стабильно", "не всегда": "не всегда", "не готов": "не готов"},
+            "ua": {"готовий стабільно": "готов стабильно", "не завжди": "не всегда", "не готовий": "не готов"},
+            "en": {"stable": "готов стабильно", "sometimes": "не всегда", "not ready": "не готов"},
+        }
+        return maps.get(ul, {}).get(v, value)
+
+    # discipline
+    if field == "discipline":
+        maps = {
+            "ru": {"подтверждена": "подтверждена", "не подтверждена": "НЕ подтверждена"},
+            "ua": {"підтверджено": "подтверждена", "не підтверджено": "НЕ подтверждена"},
+            "en": {"confirmed": "подтверждена", "not confirmed": "НЕ подтверждена"},
+        }
+        return maps.get(ul, {}).get(v, value)
+
+    return value
+
+async def send_admin_application_ru(user, data: dict, discipline_ok: bool):
+    now = datetime.now(timezone.utc)
+    tz3 = timezone(timedelta(hours=3))
+    ts = now.astimezone(tz3).strftime("%Y-%m-%d %H:%M")
+
+    user_lang = safe_lang(data.get("lang"))
+    lang_label = {"ru": "RU (Русский)", "ua": "UA (Українська)", "en": "EN (English)"}[user_lang]
+
+    disc_icon = "✅" if discipline_ok else "❌"
+    disc_text = "подтверждена" if discipline_ok else "НЕ подтверждена"
+
+    tg_username = f"@{user.username}" if getattr(user, "username", None) else "—"
+
+    # normalize button answers to RU
+    contact_ru = to_ru_value("contact", str(data.get("contact", "-")), user_lang)
+    noble_ru = to_ru_value("noble", str(data.get("noble", "-")), user_lang)
+    mic_ru = to_ru_value("mic", str(data.get("mic", "-")), user_lang)
+    ready_ru = to_ru_value("ready", str(data.get("ready", "-")), user_lang)
+
+    msg = (
+        "🧾 <b>Новая заявка (SOBRANIEGOLD)</b>\n\n"
+        f"👤 Игрок: <b>{user.full_name}</b>\n"
+        f"🆔 ID: <code>{user.id}</code>\n"
+        f"📎 TG username: <b>{tg_username}</b>\n"
+        f"🌍 Язык анкеты: <b>{lang_label}</b>\n\n"
+        f"{disc_icon} Дисциплина: <b>{disc_text}</b>\n\n"
+        f"1) Ник: <b>{data.get('nick','-')}</b>\n"
+        f"2) Контакт TG (из анкеты): <b>{contact_ru}</b>\n"
+        f"3) Страна/город: <b>{data.get('country','-')}</b>\n"
+        f"4) Профа/Саб: <b>{data.get('prof','-')}</b>\n"
+        f"5) Уровень: <b>{data.get('lvl','-')}</b>\n"
+        f"6) Нобл: <b>{noble_ru}</b>\n"
+        f"7) Прайм: <b>{data.get('prime','-')}</b>\n"
+        f"8) Микрофон: <b>{mic_ru}</b>\n"
+        f"9) Готовность: <b>{ready_ru}</b>\n"
+        f"10) Почему наш клан: <b>{data.get('why','-')}</b>\n\n"
+        f"⏱ {ts} (UTC+3)"
+    )
+
+    await bot.send_message(
+        ADMIN_CHAT_ID,
+        msg,
+        parse_mode="HTML",
+        reply_markup=k_admin_contact(user.id),
+    )
+
+# ===================== /start =====================
 @dp.message(CommandStart())
 async def cmd_start(m: Message, state: FSMContext):
-    # язык выбора — всегда первый экран
     await state.clear()
     await state.set_state(Form.lang)
     await m.answer(TXT["ru"]["choose_lang"], reply_markup=k_lang(), parse_mode="HTML")
 
-# ===== Language select =====
+# ===================== Language select =====================
 @dp.callback_query(F.data.startswith("lang:"))
 async def cb_lang(cq: CallbackQuery, state: FSMContext):
     lang = safe_lang(cq.data.split(":", 1)[1])
 
     data = await state.get_data()
-    current = safe_lang(data.get("lang"))
+    selected = get_selected_lang(data)  # None if not chosen yet
 
-    # защита от "message is not modified" и повторных кликов
-    if current == lang and cq.message and cq.message.text:
+    # only if already chosen the same
+    if selected == lang:
         await cq.answer(TXT[lang]["lang_already"])
         return
 
@@ -502,7 +594,6 @@ async def cb_lang(cq: CallbackQuery, state: FSMContext):
             parse_mode="HTML",
         )
     except Exception:
-        # если редактирование невозможно (редкие кейсы) — просто отправим новым сообщением
         await cq.message.answer(
             TXT[lang]["welcome"],
             reply_markup=k_start(lang),
@@ -511,17 +602,12 @@ async def cb_lang(cq: CallbackQuery, state: FSMContext):
 
     await cq.answer()
 
-# ===== Menu =====
+# ===================== Menu =====================
 @dp.callback_query(F.data == "info")
 async def cb_info(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     lang = safe_lang(data.get("lang"))
-
-    await cq.message.edit_text(
-        TXT[lang]["info"],
-        reply_markup=k_start(lang),
-        parse_mode="HTML",
-    )
+    await cq.message.edit_text(TXT[lang]["info"], reply_markup=k_start(lang), parse_mode="HTML")
     await cq.answer()
 
 @dp.callback_query(F.data == "start_form")
@@ -529,7 +615,6 @@ async def cb_start_form(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     lang = safe_lang(data.get("lang"))
 
-    # старт анкеты
     await state.clear()
     await state.update_data(lang=lang)
 
@@ -549,11 +634,7 @@ async def cb_cancel(cq: CallbackQuery, state: FSMContext):
     await state.clear()
     await state.update_data(lang=lang)
 
-    await cq.message.edit_text(
-        TXT[lang]["cancelled"],
-        reply_markup=k_start(lang),
-        parse_mode="HTML",
-    )
+    await cq.message.edit_text(TXT[lang]["cancelled"], reply_markup=k_start(lang), parse_mode="HTML")
     await cq.answer()
 
 @dp.callback_query(F.data == "restart")
@@ -572,7 +653,7 @@ async def cb_restart(cq: CallbackQuery, state: FSMContext):
     await state.set_state(Form.nick)
     await cq.answer()
 
-# ===== Step 1 Nick =====
+# ===================== Step 1 Nick =====================
 @dp.message(Form.nick)
 async def step_nick(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -587,7 +668,6 @@ async def step_nick(m: Message, state: FSMContext):
 
     await state.update_data(nick=m.text.strip()[:40])
 
-    # Step 2 contact
     kb = k_cancel(lang)
     if m.from_user and m.from_user.username:
         kb = k_use_my_tg(lang)
@@ -623,7 +703,7 @@ async def cb_use_my_tg(cq: CallbackQuery, state: FSMContext):
     await state.set_state(Form.country)
     await cq.answer()
 
-# ===== Step 2 Contact =====
+# ===================== Step 2 Contact =====================
 @dp.message(Form.contact)
 async def step_contact(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -638,7 +718,6 @@ async def step_contact(m: Message, state: FSMContext):
         return
 
     low = t.lower()
-    # разные "нет" в разных языках
     if low in {"нет", "no", "none", "ні", "нема"}:
         contact = {"ru": "нет", "ua": "ні", "en": "no"}[lang]
     else:
@@ -653,7 +732,7 @@ async def step_contact(m: Message, state: FSMContext):
     )
     await state.set_state(Form.country)
 
-# ===== Step 3 Country =====
+# ===================== Step 3 Country =====================
 @dp.message(Form.country)
 async def step_country(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -675,7 +754,7 @@ async def step_country(m: Message, state: FSMContext):
     )
     await state.set_state(Form.prof)
 
-# ===== Step 4 Prof =====
+# ===================== Step 4 Prof =====================
 @dp.message(Form.prof)
 async def step_prof(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -697,7 +776,7 @@ async def step_prof(m: Message, state: FSMContext):
     )
     await state.set_state(Form.lvl)
 
-# ===== Step 5 Level =====
+# ===================== Step 5 Level =====================
 @dp.message(Form.lvl)
 async def step_lvl(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -725,7 +804,7 @@ async def step_lvl(m: Message, state: FSMContext):
     )
     await state.set_state(Form.noble)
 
-# ===== Step 6 Noble =====
+# ===================== Step 6 Noble =====================
 @dp.callback_query(F.data.startswith("noble:"))
 async def cb_noble(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.noble.state:
@@ -754,7 +833,7 @@ async def cb_noble(cq: CallbackQuery, state: FSMContext):
     await state.set_state(Form.prime)
     await cq.answer()
 
-# ===== Step 7 Prime =====
+# ===================== Step 7 Prime =====================
 @dp.message(Form.prime)
 async def step_prime(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -776,7 +855,7 @@ async def step_prime(m: Message, state: FSMContext):
     )
     await state.set_state(Form.mic)
 
-# ===== Step 8 Mic =====
+# ===================== Step 8 Mic =====================
 @dp.callback_query(F.data.startswith("mic:"))
 async def cb_mic(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.mic.state:
@@ -800,7 +879,7 @@ async def cb_mic(cq: CallbackQuery, state: FSMContext):
     await state.set_state(Form.ready)
     await cq.answer()
 
-# ===== Step 9 Ready =====
+# ===================== Step 9 Ready =====================
 @dp.callback_query(F.data.startswith("ready:"))
 async def cb_ready(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.ready.state:
@@ -829,7 +908,7 @@ async def cb_ready(cq: CallbackQuery, state: FSMContext):
     await state.set_state(Form.why)
     await cq.answer()
 
-# ===== Step 10 Why =====
+# ===================== Step 10 Why =====================
 @dp.message(Form.why)
 async def step_why(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -852,7 +931,7 @@ async def step_why(m: Message, state: FSMContext):
     )
     await state.set_state(Form.discipline)
 
-# ===== Step 11 Discipline =====
+# ===================== Step 11 Discipline =====================
 @dp.callback_query(F.data.startswith("disc:"))
 async def cb_disc(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.discipline.state:
@@ -865,7 +944,6 @@ async def cb_disc(cq: CallbackQuery, state: FSMContext):
     val = cq.data.split(":", 1)[1]
     ok = (val == "yes")
 
-    # сохраняем для превью (на языке игрока)
     if lang == "ru":
         disc_text = "подтверждена" if ok else "не подтверждена"
     elif lang == "ua":
@@ -875,7 +953,6 @@ async def cb_disc(cq: CallbackQuery, state: FSMContext):
 
     await state.update_data(discipline=disc_text, discipline_ok=ok)
 
-    # Если НЕ подтвердил дисциплину — отправляем админу и показываем отказ игроку
     if not ok:
         await send_admin_application_ru(cq.from_user, await state.get_data(), discipline_ok=False)
         await state.clear()
@@ -884,13 +961,12 @@ async def cb_disc(cq: CallbackQuery, state: FSMContext):
         await cq.answer()
         return
 
-    # Иначе — превью
     data2 = await state.get_data()
     await cq.message.edit_text(fmt_preview(lang, data2), reply_markup=k_confirm(lang), parse_mode="HTML")
     await state.set_state(Form.confirm)
     await cq.answer()
 
-# ===== Confirm send =====
+# ===================== Confirm send =====================
 @dp.callback_query(F.data == "confirm_send")
 async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.confirm.state:
@@ -900,7 +976,6 @@ async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     lang = safe_lang(data.get("lang"))
 
-    # cooldown
     now = datetime.now(timezone.utc)
     prev = last_submit.get(cq.from_user.id)
     if prev and now - prev < timedelta(hours=COOLDOWN_HOURS):
@@ -910,7 +985,6 @@ async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
     await send_admin_application_ru(cq.from_user, data, discipline_ok=True)
 
     last_submit[cq.from_user.id] = now
-
     await state.clear()
     await state.update_data(lang=lang)
 
@@ -925,52 +999,7 @@ async def in_confirm_state(m: Message, state: FSMContext):
         return
     await m.answer(TXT[lang]["confirm_hint"], reply_markup=k_confirm(lang), parse_mode="HTML")
 
-# ===== Admin message (ALWAYS RU) =====
-async def send_admin_application_ru(user, data: dict, discipline_ok: bool):
-    """
-    ВАЖНО: админское сообщение ВСЕГДА на русском.
-    Язык игрока показываем отдельным полем.
-    """
-    now = datetime.now(timezone.utc)
-    tz3 = timezone(timedelta(hours=3))
-    ts = now.astimezone(tz3).strftime("%Y-%m-%d %H:%M")
-
-    user_lang = safe_lang(data.get("lang"))
-    lang_label = {"ru": "RU (Русский)", "ua": "UA (Українська)", "en": "EN (English)"}[user_lang]
-
-    disc_icon = "✅" if discipline_ok else "❌"
-    disc_text = "подтверждена" if discipline_ok else "НЕ подтверждена"
-
-    tg_username = f"@{user.username}" if getattr(user, "username", None) else "—"
-
-    msg = (
-        "🧾 <b>Новая заявка (SOBRANIEGOLD)</b>\n\n"
-        f"👤 Игрок: <b>{user.full_name}</b>\n"
-        f"🆔 ID: <code>{user.id}</code>\n"
-        f"📎 TG username: <b>{tg_username}</b>\n"
-        f"🌍 Язык анкеты: <b>{lang_label}</b>\n\n"
-        f"{disc_icon} Дисциплина: <b>{disc_text}</b>\n\n"
-        f"1) Ник: <b>{data.get('nick','-')}</b>\n"
-        f"2) Контакт TG (из анкеты): <b>{data.get('contact','-')}</b>\n"
-        f"3) Страна/город: <b>{data.get('country','-')}</b>\n"
-        f"4) Профа/Саб: <b>{data.get('prof','-')}</b>\n"
-        f"5) Уровень: <b>{data.get('lvl','-')}</b>\n"
-        f"6) Нобл: <b>{data.get('noble','-')}</b>\n"
-        f"7) Прайм: <b>{data.get('prime','-')}</b>\n"
-        f"8) Микрофон: <b>{data.get('mic','-')}</b>\n"
-        f"9) Готовность: <b>{data.get('ready','-')}</b>\n"
-        f"10) Почему наш клан: <b>{data.get('why','-')}</b>\n\n"
-        f"⏱ {ts} (UTC+3)"
-    )
-
-    await bot.send_message(
-        ADMIN_CHAT_ID,
-        msg,
-        parse_mode="HTML",
-        reply_markup=k_admin_contact(user.id),
-    )
-
-# ===== Webhook =====
+# ===================== Webhook =====================
 @dp.startup()
 async def startup():
     if WEBHOOK_URL:
