@@ -77,55 +77,71 @@ TXT = {
         "send": "✅ Отправить",
 
         "form": "📝 <b>Анкета</b>",
-        "step1": "Введи <b>ник в игре</b>:",
+
+        # 1/12
+        "step1": "👤 Введи <b>ник в игре</b>:",
         "step1_bad": "⚠️ Ник без ссылок и @. Повтори:",
 
-        "step2": (
-            "Укажи <b>контакт в Telegram</b>:\n"
+        # 2/12 (NEW)
+        "step2": "🧾 Укажи <b>настоящее имя</b>:",
+        "step2_bad": "⚠️ Имя без ссылок и @. Повтори:",
+
+        # 3/12
+        "step3": (
+            "📱 Укажи <b>контакт в Telegram</b>:\n"
             "• @username\n\n"
             "Если нет username — напиши <b>нет</b> или укажи способ связи."
         ),
         "use_my_tg": "👤 Использовать мой Telegram",
-        "step2_empty": "⚠️ Введи контакт или напиши <b>нет</b>.",
+        "step3_empty": "⚠️ Введи контакт или напиши <b>нет</b>.",
         "no_username_alert": "У тебя нет @username в Telegram.",
 
-        "step3": "Укажи <b>страна / город</b> (коротко):",
-        "step3_bad": "⚠️ Без ссылок и @. Напиши страна/город:",
+        # 4/12
+        "step4": "🌍 Укажи <b>страна / город</b> (коротко):",
+        "step4_bad": "⚠️ Без ссылок и @. Напиши страна/город:",
 
-        "step4": (
-            "Укажи <b>профу / саб</b> (коротко):\n"
+        # 5/12
+        "step5": (
+            "🧙‍♂️ Укажи <b>профу / саб</b> (коротко):\n"
             "<i>Пример: Necromancer / Bishop</i>"
         ),
-        "step4_bad": "⚠️ Без ссылок и @. Повтори профу/саб:",
+        "step5_bad": "⚠️ Без ссылок и @. Повтори профу/саб:",
 
-        "step5": "Укажи <b>уровень</b> (числом):",
-        "step5_nan": "⚠️ Уровень должен быть числом. Например: <b>78</b>",
-        "step5_range": "⚠️ Укажи уровень от 1 до 99.",
+        # 6/12 (LEVEL text changed)
+        "step6": "⭐ Твой <b>LVL</b> в игре? (числом):",
+        "step6_nan": "⚠️ LVL должен быть числом. Например: <b>78</b>",
+        "step6_range": "⚠️ Укажи LVL от 1 до 99.",
 
-        "step6": "Нобл есть?",
+        # 7/12
+        "step7": "👑 Нобл есть?",
         "noble_yes": "✅ Да",
         "noble_no": "❌ Нет",
         "noble_progress": "⏳ В процессе",
 
-        "step7": (
-            "Укажи <b>прайм</b> (дни + время):\n"
+        # 8/12
+        "step8": (
+            "⏰ Укажи <b>прайм</b> (дни + время):\n"
             "<i>Пример: Пн–Пт 20:00–00:00, сб/вс больше</i>"
         ),
-        "step7_bad": "⚠️ Без ссылок и @. Укажи прайм текстом:",
+        "step8_bad": "⚠️ Без ссылок и @. Укажи прайм текстом:",
 
-        "step8": "Есть <b>микрофон</b> и готов слушать колл (TS/Discord)?",
+        # 9/12
+        "step9": "🎙 Есть <b>микрофон</b> и готов слушать колл (TS/Discord)?",
         "mic_yes": "🎙 Да",
         "mic_no": "❌ Нет",
 
-        "step9": "Готовность к <b>прайму/явке</b>:",
+        # 10/12
+        "step10": "📅 Готовность к <b>прайму/явке</b>:",
         "ready_yes": "✅ Готов стабильно",
         "ready_sometimes": "⚠️ Не всегда",
         "ready_no": "❌ Не готов",
 
-        "step10": "Почему ты хочешь вступить именно в <b>SOBRANIEGOLD</b>? (1–2 предложения)",
-        "step10_bad": "⚠️ Без ссылок и @. Ответь 1–2 предложениями:",
+        # 11/12
+        "step11": "🏰 Почему ты хочешь вступить именно в <b>SOBRANIEGOLD</b>? (1–2 предложения)",
+        "step11_bad": "⚠️ Без ссылок и @. Ответь 1–2 предложениями:",
 
-        "step11": "Готов соблюдать <b>правила клана</b> и решения КЛа/ПЛа?",
+        # 12/12
+        "step12": "⚠️ Готов соблюдать <b>правила клана</b> и решения КЛа/ПЛа?",
         "disc_yes": "✅ Да",
         "disc_no": "❌ Нет",
 
@@ -171,55 +187,59 @@ TXT = {
         "send": "✅ Відправити",
 
         "form": "📝 <b>Анкета</b>",
-        "step1": "Введи <b>нік у грі</b>:",
+
+        "step1": "👤 Введи <b>нік у грі</b>:",
         "step1_bad": "⚠️ Нік без посилань і @. Повтори:",
 
-        "step2": (
-            "Вкажи <b>контакт у Telegram</b>:\n"
+        "step2": "🧾 Вкажи <b>справжнє ім’я</b>:",
+        "step2_bad": "⚠️ Ім’я без посилань і @. Повтори:",
+
+        "step3": (
+            "📱 Вкажи <b>контакт у Telegram</b>:\n"
             "• @username\n\n"
             "Якщо немає username — напиши <b>ні</b> або спосіб зв’язку."
         ),
         "use_my_tg": "👤 Використати мій Telegram",
-        "step2_empty": "⚠️ Введи контакт або напиши <b>ні</b>.",
+        "step3_empty": "⚠️ Введи контакт або напиши <b>ні</b>.",
         "no_username_alert": "У тебе немає @username у Telegram.",
 
-        "step3": "Вкажи <b>країна / місто</b> (коротко):",
-        "step3_bad": "⚠️ Без посилань і @. Напиши країна/місто:",
+        "step4": "🌍 Вкажи <b>країна / місто</b> (коротко):",
+        "step4_bad": "⚠️ Без посилань і @. Напиши країна/місто:",
 
-        "step4": (
-            "Вкажи <b>профу / саб</b> (коротко):\n"
+        "step5": (
+            "🧙‍♂️ Вкажи <b>профу / саб</b> (коротко):\n"
             "<i>Приклад: Necromancer / Bishop</i>"
         ),
-        "step4_bad": "⚠️ Без посилань і @. Повтори профу/саб:",
+        "step5_bad": "⚠️ Без посилань і @. Повтори профу/саб:",
 
-        "step5": "Вкажи <b>рівень</b> (числом):",
-        "step5_nan": "⚠️ Рівень має бути числом. Наприклад: <b>78</b>",
-        "step5_range": "⚠️ Вкажи рівень від 1 до 99.",
+        "step6": "⭐ Твій <b>LVL</b> у грі? (числом):",
+        "step6_nan": "⚠️ LVL має бути числом. Наприклад: <b>78</b>",
+        "step6_range": "⚠️ Вкажи LVL від 1 до 99.",
 
-        "step6": "Є нобл?",
+        "step7": "👑 Є нобл?",
         "noble_yes": "✅ Так",
         "noble_no": "❌ Ні",
         "noble_progress": "⏳ В процесі",
 
-        "step7": (
-            "Вкажи <b>прайм</b> (дні + час):\n"
+        "step8": (
+            "⏰ Вкажи <b>прайм</b> (дні + час):\n"
             "<i>Приклад: Пн–Пт 20:00–00:00, сб/нд більше</i>"
         ),
-        "step7_bad": "⚠️ Без посилань і @. Вкажи прайм текстом:",
+        "step8_bad": "⚠️ Без посилань і @. Вкажи прайм текстом:",
 
-        "step8": "Є <b>мікрофон</b> і готовий слухати колл (TS/Discord)?",
+        "step9": "🎙 Є <b>мікрофон</b> і готовий слухати колл (TS/Discord)?",
         "mic_yes": "🎙 Так",
         "mic_no": "❌ Ні",
 
-        "step9": "Готовність до <b>прайму/явки</b>:",
+        "step10": "📅 Готовність до <b>прайму/явки</b>:",
         "ready_yes": "✅ Готовий стабільно",
         "ready_sometimes": "⚠️ Не завжди",
         "ready_no": "❌ Не готовий",
 
-        "step10": "Чому ти хочеш вступити саме в <b>SOBRANIEGOLD</b>? (1–2 речення)",
-        "step10_bad": "⚠️ Без посилань і @. Відповідай 1–2 реченнями:",
+        "step11": "🏰 Чому ти хочеш вступити саме в <b>SOBRANIEGOLD</b>? (1–2 речення)",
+        "step11_bad": "⚠️ Без посилань і @. Відповідай 1–2 реченнями:",
 
-        "step11": "Готовий дотримуватись <b>правил клану</b> та рішень КЛа/ПЛа?",
+        "step12": "⚠️ Готовий дотримуватись <b>правил клану</b> та рішень КЛа/ПЛа?",
         "disc_yes": "✅ Так",
         "disc_no": "❌ Ні",
 
@@ -265,55 +285,59 @@ TXT = {
         "send": "✅ Send",
 
         "form": "📝 <b>Application</b>",
-        "step1": "Enter your <b>in-game nickname</b>:",
+
+        "step1": "👤 Enter your <b>in-game nickname</b>:",
         "step1_bad": "⚠️ No links and no @. Try again:",
 
-        "step2": (
-            "Enter your <b>Telegram contact</b>:\n"
+        "step2": "🧾 Enter your <b>real name</b>:",
+        "step2_bad": "⚠️ No links and no @. Try again:",
+
+        "step3": (
+            "📱 Enter your <b>Telegram contact</b>:\n"
             "• @username\n\n"
             "If you don't have a username — type <b>no</b> or your contact method."
         ),
         "use_my_tg": "👤 Use my Telegram",
-        "step2_empty": "⚠️ Enter contact or type <b>no</b>.",
+        "step3_empty": "⚠️ Enter contact or type <b>no</b>.",
         "no_username_alert": "You don't have a Telegram @username.",
 
-        "step3": "Enter <b>country / city</b> (short):",
-        "step3_bad": "⚠️ No links and no @. Enter country/city:",
+        "step4": "🌍 Enter <b>country / city</b> (short):",
+        "step4_bad": "⚠️ No links and no @. Enter country/city:",
 
-        "step4": (
-            "Enter your <b>class / sub</b> (short):\n"
+        "step5": (
+            "🧙‍♂️ Enter your <b>class / sub</b> (short):\n"
             "<i>Example: Necromancer / Bishop</i>"
         ),
-        "step4_bad": "⚠️ No links and no @. Repeat class/sub:",
+        "step5_bad": "⚠️ No links and no @. Repeat class/sub:",
 
-        "step5": "Enter your <b>level</b> (number):",
-        "step5_nan": "⚠️ Level must be a number. Example: <b>78</b>",
-        "step5_range": "⚠️ Enter a level between 1 and 99.",
+        "step6": "⭐ Your <b>LVL</b> in game? (number):",
+        "step6_nan": "⚠️ LVL must be a number. Example: <b>78</b>",
+        "step6_range": "⚠️ Enter a LVL between 1 and 99.",
 
-        "step6": "Do you have Noble?",
+        "step7": "👑 Do you have Noble?",
         "noble_yes": "✅ Yes",
         "noble_no": "❌ No",
         "noble_progress": "⏳ In progress",
 
-        "step7": (
-            "Enter your <b>prime time</b> (days + time):\n"
+        "step8": (
+            "⏰ Enter your <b>prime time</b> (days + time):\n"
             "<i>Example: Mon–Fri 20:00–00:00, weekends more</i>"
         ),
-        "step7_bad": "⚠️ No links and no @. Enter prime time:",
+        "step8_bad": "⚠️ No links and no @. Enter prime time:",
 
-        "step8": "Do you have a <b>microphone</b> and can listen to calls (TS/Discord)?",
+        "step9": "🎙 Do you have a <b>microphone</b> and can listen to calls (TS/Discord)?",
         "mic_yes": "🎙 Yes",
         "mic_no": "❌ No",
 
-        "step9": "Your <b>attendance readiness</b>:",
+        "step10": "📅 Your <b>attendance readiness</b>:",
         "ready_yes": "✅ Stable",
         "ready_sometimes": "⚠️ Sometimes",
         "ready_no": "❌ Not ready",
 
-        "step10": "Why do you want to join <b>SOBRANIEGOLD</b>? (1–2 sentences)",
-        "step10_bad": "⚠️ No links and no @. Answer in 1–2 sentences:",
+        "step11": "🏰 Why do you want to join <b>SOBRANIEGOLD</b>? (1–2 sentences)",
+        "step11_bad": "⚠️ No links and no @. Answer in 1–2 sentences:",
 
-        "step11": "Are you ready to follow <b>clan rules</b> and CL/PL decisions?",
+        "step12": "⚠️ Are you ready to follow <b>clan rules</b> and CL/PL decisions?",
         "disc_yes": "✅ Yes",
         "disc_no": "❌ No",
 
@@ -427,6 +451,7 @@ def k_admin_contact(user_id: int):
 class Form(StatesGroup):
     lang = State()
     nick = State()
+    real_name = State()  # NEW
     contact = State()
     country = State()
     prof = State()
@@ -449,24 +474,64 @@ async def guard_private_message(m: Message, lang: str) -> bool:
 def fmt_preview(lang: str, data: dict) -> str:
     t = TXT[lang]
     label = {
-        "ru": ("Ник", "Контакт TG", "Страна/город", "Профа/Саб", "Уровень", "Нобл", "Прайм", "Микрофон", "Готовность", "Почему клан", "Дисциплина"),
-        "ua": ("Нік", "Контакт TG", "Країна/місто", "Профа/Саб", "Рівень", "Нобл", "Прайм", "Мікрофон", "Готовність", "Чому клан", "Дисципліна"),
-        "en": ("Nick", "TG contact", "Country/City", "Class/Sub", "Level", "Noble", "Prime time", "Mic", "Readiness", "Why clan", "Discipline"),
+        "ru": (
+            "👤 Ник",
+            "🧾 Имя",
+            "📱 Контакт TG",
+            "🌍 Страна/город",
+            "🧙‍♂️ Профа/Саб",
+            "⭐ LVL",
+            "👑 Нобл",
+            "⏰ Прайм",
+            "🎙 Микрофон",
+            "📅 Готовность",
+            "🏰 Почему клан",
+            "⚠️ Дисциплина",
+        ),
+        "ua": (
+            "👤 Нік",
+            "🧾 Ім’я",
+            "📱 Контакт TG",
+            "🌍 Країна/місто",
+            "🧙‍♂️ Профа/Саб",
+            "⭐ LVL",
+            "👑 Нобл",
+            "⏰ Прайм",
+            "🎙 Мікрофон",
+            "📅 Готовність",
+            "🏰 Чому клан",
+            "⚠️ Дисципліна",
+        ),
+        "en": (
+            "👤 Nick",
+            "🧾 Name",
+            "📱 TG contact",
+            "🌍 Country/City",
+            "🧙‍♂️ Class/Sub",
+            "⭐ LVL",
+            "👑 Noble",
+            "⏰ Prime time",
+            "🎙 Mic",
+            "📅 Readiness",
+            "🏰 Why clan",
+            "⚠️ Discipline",
+        ),
     }[lang]
 
     return (
         f"{t['preview_title']}\n\n"
         f"1) {label[0]}: <b>{data.get('nick','-')}</b>\n"
-        f"2) {label[1]}: <b>{data.get('contact','-')}</b>\n"
-        f"3) {label[2]}: <b>{data.get('country','-')}</b>\n"
-        f"4) {label[3]}: <b>{data.get('prof','-')}</b>\n"
-        f"5) {label[4]}: <b>{data.get('lvl','-')}</b>\n"
-        f"6) {label[5]}: <b>{data.get('noble','-')}</b>\n"
-        f"7) {label[6]}: <b>{data.get('prime','-')}</b>\n"
-        f"8) {label[7]}: <b>{data.get('mic','-')}</b>\n"
-        f"9) {label[8]}: <b>{data.get('ready','-')}</b>\n"
-        f"10) {label[9]}: <b>{data.get('why','-')}</b>\n"
-        f"11) {label[10]}: <b>{data.get('discipline','-')}</b>\n\n"
+        f"2) {label[1]}: <b>{data.get('real_name','-')}</b>\n"
+        f"3) {label[2]}: <b>{data.get('contact','-')}</b>\n"
+        f"4) {label[3]}: <b>{data.get('country','-')}</b>\n"
+        f"5) {label[4]}: <b>{data.get('prof','-')}</b>\n"
+        f"6) {label[5]}: <b>{data.get('lvl','-')}</b>\n"
+        f"7) {label[6]}: <b>{data.get('noble','-')}</b>\n"
+        f"8) {label[7]}: <b>{data.get('prime','-')}</b>\n"
+        f"9) {label[8]}: <b>{data.get('mic','-')}</b>\n"
+        f"10) {label[9]}: <b>{data.get('ready','-')}</b>\n"
+        f"11) {label[10]}: <b>{data.get('why','-')}</b>\n"
+        f"12) {label[11]}: <b>{data.get('discipline','-')}</b>\n\n"
         f"{t['preview_submit']}"
     )
 
@@ -474,13 +539,11 @@ def to_ru_value(field: str, value: str, user_lang: str) -> str:
     v = (value or "").strip().lower()
     ul = user_lang
 
-    # contact
     if field == "contact":
         if v in {"no", "none", "нет", "ні", "нема"}:
             return "нет"
         return value
 
-    # noble
     if field == "noble":
         maps = {
             "ru": {"да": "да", "нет": "нет", "в процессе": "в процессе"},
@@ -489,7 +552,6 @@ def to_ru_value(field: str, value: str, user_lang: str) -> str:
         }
         return maps.get(ul, {}).get(v, value)
 
-    # mic
     if field == "mic":
         maps = {
             "ru": {"да": "да", "нет": "нет"},
@@ -498,7 +560,6 @@ def to_ru_value(field: str, value: str, user_lang: str) -> str:
         }
         return maps.get(ul, {}).get(v, value)
 
-    # ready
     if field == "ready":
         maps = {
             "ru": {"готов стабильно": "готов стабильно", "не всегда": "не всегда", "не готов": "не готов"},
@@ -507,7 +568,6 @@ def to_ru_value(field: str, value: str, user_lang: str) -> str:
         }
         return maps.get(ul, {}).get(v, value)
 
-    # discipline
     if field == "discipline":
         maps = {
             "ru": {"подтверждена": "подтверждена", "не подтверждена": "НЕ подтверждена"},
@@ -531,7 +591,6 @@ async def send_admin_application_ru(user, data: dict, discipline_ok: bool):
 
     tg_username = f"@{user.username}" if getattr(user, "username", None) else "—"
 
-    # normalize button answers to RU
     contact_ru = to_ru_value("contact", str(data.get("contact", "-")), user_lang)
     noble_ru = to_ru_value("noble", str(data.get("noble", "-")), user_lang)
     mic_ru = to_ru_value("mic", str(data.get("mic", "-")), user_lang)
@@ -544,16 +603,17 @@ async def send_admin_application_ru(user, data: dict, discipline_ok: bool):
         f"📎 TG username: <b>{tg_username}</b>\n"
         f"🌍 Язык анкеты: <b>{lang_label}</b>\n\n"
         f"{disc_icon} Дисциплина: <b>{disc_text}</b>\n\n"
-        f"1) Ник: <b>{data.get('nick','-')}</b>\n"
-        f"2) Контакт TG (из анкеты): <b>{contact_ru}</b>\n"
-        f"3) Страна/город: <b>{data.get('country','-')}</b>\n"
-        f"4) Профа/Саб: <b>{data.get('prof','-')}</b>\n"
-        f"5) Уровень: <b>{data.get('lvl','-')}</b>\n"
-        f"6) Нобл: <b>{noble_ru}</b>\n"
-        f"7) Прайм: <b>{data.get('prime','-')}</b>\n"
-        f"8) Микрофон: <b>{mic_ru}</b>\n"
-        f"9) Готовность: <b>{ready_ru}</b>\n"
-        f"10) Почему наш клан: <b>{data.get('why','-')}</b>\n\n"
+        f"1) 👤 Ник: <b>{data.get('nick','-')}</b>\n"
+        f"2) 🧾 Имя: <b>{data.get('real_name','-')}</b>\n"
+        f"3) 📱 Контакт TG (из анкеты): <b>{contact_ru}</b>\n"
+        f"4) 🌍 Страна/город: <b>{data.get('country','-')}</b>\n"
+        f"5) 🧙‍♂️ Профа/Саб: <b>{data.get('prof','-')}</b>\n"
+        f"6) ⭐ LVL: <b>{data.get('lvl','-')}</b>\n"
+        f"7) 👑 Нобл: <b>{noble_ru}</b>\n"
+        f"8) ⏰ Прайм: <b>{data.get('prime','-')}</b>\n"
+        f"9) 🎙 Микрофон: <b>{mic_ru}</b>\n"
+        f"10) 📅 Готовность: <b>{ready_ru}</b>\n"
+        f"11) 🏰 Почему наш клан: <b>{data.get('why','-')}</b>\n\n"
         f"⏱ {ts} (UTC+3)"
     )
 
@@ -577,16 +637,14 @@ async def cb_lang(cq: CallbackQuery, state: FSMContext):
     lang = safe_lang(cq.data.split(":", 1)[1])
 
     data = await state.get_data()
-    selected = get_selected_lang(data)  # None if not chosen yet
+    selected = get_selected_lang(data)
 
-    # only if already chosen the same
     if selected == lang:
         await cq.answer(TXT[lang]["lang_already"])
         return
 
     await state.update_data(lang=lang)
 
-    # show welcome
     try:
         await cq.message.edit_text(
             TXT[lang]["welcome"],
@@ -619,7 +677,7 @@ async def cb_start_form(cq: CallbackQuery, state: FSMContext):
     await state.update_data(lang=lang)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (1/11)\n\n{TXT[lang]['step1']}",
+        f"{TXT[lang]['form']} (1/12)\n\n{TXT[lang]['step1']}",
         reply_markup=k_cancel(lang),
         parse_mode="HTML",
     )
@@ -646,7 +704,7 @@ async def cb_restart(cq: CallbackQuery, state: FSMContext):
     await state.update_data(lang=lang)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (1/11)\n\n{TXT[lang]['step1']}",
+        f"{TXT[lang]['form']} (1/12)\n\n{TXT[lang]['step1']}",
         reply_markup=k_cancel(lang),
         parse_mode="HTML",
     )
@@ -668,12 +726,35 @@ async def step_nick(m: Message, state: FSMContext):
 
     await state.update_data(nick=m.text.strip()[:40])
 
+    # Next: real name
+    await m.answer(
+        f"{TXT[lang]['form']} (2/12)\n\n{TXT[lang]['step2']}",
+        reply_markup=k_cancel(lang),
+        parse_mode="HTML",
+    )
+    await state.set_state(Form.real_name)
+
+# ===================== Step 2 Real name (NEW) =====================
+@dp.message(Form.real_name)
+async def step_real_name(m: Message, state: FSMContext):
+    data = await state.get_data()
+    lang = safe_lang(data.get("lang"))
+
+    if not await guard_private_message(m, lang):
+        return
+
+    if bad_text_general(m.text):
+        await m.answer(TXT[lang]["step2_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        return
+
+    await state.update_data(real_name=m.text.strip()[:40])
+
     kb = k_cancel(lang)
     if m.from_user and m.from_user.username:
         kb = k_use_my_tg(lang)
 
     await m.answer(
-        f"{TXT[lang]['form']} (2/11)\n\n{TXT[lang]['step2']}",
+        f"{TXT[lang]['form']} (3/12)\n\n{TXT[lang]['step3']}",
         reply_markup=kb,
         parse_mode="HTML",
     )
@@ -696,14 +777,14 @@ async def cb_use_my_tg(cq: CallbackQuery, state: FSMContext):
     await state.update_data(contact=f"@{username}")
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (3/11)\n\n{TXT[lang]['step3']}",
+        f"{TXT[lang]['form']} (4/12)\n\n{TXT[lang]['step4']}",
         reply_markup=k_cancel(lang),
         parse_mode="HTML",
     )
     await state.set_state(Form.country)
     await cq.answer()
 
-# ===================== Step 2 Contact =====================
+# ===================== Step 3 Contact =====================
 @dp.message(Form.contact)
 async def step_contact(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -714,7 +795,7 @@ async def step_contact(m: Message, state: FSMContext):
 
     t = (m.text or "").strip()
     if not t:
-        await m.answer(TXT[lang]["step2_empty"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step3_empty"], reply_markup=k_cancel(lang), parse_mode="HTML")
         return
 
     low = t.lower()
@@ -726,37 +807,15 @@ async def step_contact(m: Message, state: FSMContext):
     await state.update_data(contact=contact)
 
     await m.answer(
-        f"{TXT[lang]['form']} (3/11)\n\n{TXT[lang]['step3']}",
+        f"{TXT[lang]['form']} (4/12)\n\n{TXT[lang]['step4']}",
         reply_markup=k_cancel(lang),
         parse_mode="HTML",
     )
     await state.set_state(Form.country)
 
-# ===================== Step 3 Country =====================
+# ===================== Step 4 Country =====================
 @dp.message(Form.country)
 async def step_country(m: Message, state: FSMContext):
-    data = await state.get_data()
-    lang = safe_lang(data.get("lang"))
-
-    if not await guard_private_message(m, lang):
-        return
-
-    if bad_text_general(m.text):
-        await m.answer(TXT[lang]["step3_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
-        return
-
-    await state.update_data(country=m.text.strip()[:64])
-
-    await m.answer(
-        f"{TXT[lang]['form']} (4/11)\n\n{TXT[lang]['step4']}",
-        reply_markup=k_cancel(lang),
-        parse_mode="HTML",
-    )
-    await state.set_state(Form.prof)
-
-# ===================== Step 4 Prof =====================
-@dp.message(Form.prof)
-async def step_prof(m: Message, state: FSMContext):
     data = await state.get_data()
     lang = safe_lang(data.get("lang"))
 
@@ -767,16 +826,38 @@ async def step_prof(m: Message, state: FSMContext):
         await m.answer(TXT[lang]["step4_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
         return
 
+    await state.update_data(country=m.text.strip()[:64])
+
+    await m.answer(
+        f"{TXT[lang]['form']} (5/12)\n\n{TXT[lang]['step5']}",
+        reply_markup=k_cancel(lang),
+        parse_mode="HTML",
+    )
+    await state.set_state(Form.prof)
+
+# ===================== Step 5 Prof =====================
+@dp.message(Form.prof)
+async def step_prof(m: Message, state: FSMContext):
+    data = await state.get_data()
+    lang = safe_lang(data.get("lang"))
+
+    if not await guard_private_message(m, lang):
+        return
+
+    if bad_text_general(m.text):
+        await m.answer(TXT[lang]["step5_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        return
+
     await state.update_data(prof=m.text.strip()[:80])
 
     await m.answer(
-        f"{TXT[lang]['form']} (5/11)\n\n{TXT[lang]['step5']}",
+        f"{TXT[lang]['form']} (6/12)\n\n{TXT[lang]['step6']}",
         reply_markup=k_cancel(lang),
         parse_mode="HTML",
     )
     await state.set_state(Form.lvl)
 
-# ===================== Step 5 Level =====================
+# ===================== Step 6 Level =====================
 @dp.message(Form.lvl)
 async def step_lvl(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -787,24 +868,24 @@ async def step_lvl(m: Message, state: FSMContext):
 
     t = (m.text or "").strip()
     if not t.isdigit():
-        await m.answer(TXT[lang]["step5_nan"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step6_nan"], reply_markup=k_cancel(lang), parse_mode="HTML")
         return
 
     lvl_int = int(t)
     if lvl_int < 1 or lvl_int > 99:
-        await m.answer(TXT[lang]["step5_range"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step6_range"], reply_markup=k_cancel(lang), parse_mode="HTML")
         return
 
     await state.update_data(lvl=lvl_int)
 
     await m.answer(
-        f"{TXT[lang]['form']} (6/11)\n\n{TXT[lang]['step6']}",
+        f"{TXT[lang]['form']} (7/12)\n\n{TXT[lang]['step7']}",
         reply_markup=k_noble(lang),
         parse_mode="HTML",
     )
     await state.set_state(Form.noble)
 
-# ===================== Step 6 Noble =====================
+# ===================== Step 7 Noble =====================
 @dp.callback_query(F.data.startswith("noble:"))
 async def cb_noble(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.noble.state:
@@ -826,14 +907,14 @@ async def cb_noble(cq: CallbackQuery, state: FSMContext):
     await state.update_data(noble=noble)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (7/11)\n\n{TXT[lang]['step7']}",
+        f"{TXT[lang]['form']} (8/12)\n\n{TXT[lang]['step8']}",
         reply_markup=k_cancel(lang),
         parse_mode="HTML",
     )
     await state.set_state(Form.prime)
     await cq.answer()
 
-# ===================== Step 7 Prime =====================
+# ===================== Step 8 Prime =====================
 @dp.message(Form.prime)
 async def step_prime(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -843,19 +924,19 @@ async def step_prime(m: Message, state: FSMContext):
         return
 
     if bad_text_general(m.text):
-        await m.answer(TXT[lang]["step7_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step8_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
         return
 
     await state.update_data(prime=m.text.strip()[:80])
 
     await m.answer(
-        f"{TXT[lang]['form']} (8/11)\n\n{TXT[lang]['step8']}",
+        f"{TXT[lang]['form']} (9/12)\n\n{TXT[lang]['step9']}",
         reply_markup=k_mic(lang),
         parse_mode="HTML",
     )
     await state.set_state(Form.mic)
 
-# ===================== Step 8 Mic =====================
+# ===================== Step 9 Mic =====================
 @dp.callback_query(F.data.startswith("mic:"))
 async def cb_mic(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.mic.state:
@@ -872,14 +953,14 @@ async def cb_mic(cq: CallbackQuery, state: FSMContext):
     await state.update_data(mic=mic)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (9/11)\n\n{TXT[lang]['step9']}",
+        f"{TXT[lang]['form']} (10/12)\n\n{TXT[lang]['step10']}",
         reply_markup=k_ready(lang),
         parse_mode="HTML",
     )
     await state.set_state(Form.ready)
     await cq.answer()
 
-# ===================== Step 9 Ready =====================
+# ===================== Step 10 Ready =====================
 @dp.callback_query(F.data.startswith("ready:"))
 async def cb_ready(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.ready.state:
@@ -901,14 +982,14 @@ async def cb_ready(cq: CallbackQuery, state: FSMContext):
     await state.update_data(ready=ready)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (10/11)\n\n{TXT[lang]['step10']}",
+        f"{TXT[lang]['form']} (11/12)\n\n{TXT[lang]['step11']}",
         reply_markup=k_cancel(lang),
         parse_mode="HTML",
     )
     await state.set_state(Form.why)
     await cq.answer()
 
-# ===================== Step 10 Why =====================
+# ===================== Step 11 Why =====================
 @dp.message(Form.why)
 async def step_why(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -919,19 +1000,19 @@ async def step_why(m: Message, state: FSMContext):
 
     t = (m.text or "").strip()
     if not t or bad_text_general(t):
-        await m.answer(TXT[lang]["step10_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step11_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
         return
 
     await state.update_data(why=t[:180])
 
     await m.answer(
-        f"{TXT[lang]['form']} (11/11)\n\n{TXT[lang]['step11']}",
+        f"{TXT[lang]['form']} (12/12)\n\n{TXT[lang]['step12']}",
         reply_markup=k_discipline(lang),
         parse_mode="HTML",
     )
     await state.set_state(Form.discipline)
 
-# ===================== Step 11 Discipline =====================
+# ===================== Step 12 Discipline =====================
 @dp.callback_query(F.data.startswith("disc:"))
 async def cb_disc(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.discipline.state:
