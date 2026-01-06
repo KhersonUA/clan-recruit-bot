@@ -72,6 +72,7 @@ TXT = {
             "Нажми <b>«Подать заявку»</b>, чтобы начать."
         ),
         "cancel": "❌ Отмена",
+        "back": "⬅️ Назад",
         "cancelled": "Ок, отменил. Если захочешь — подай заявку заново.",
         "restart": "🔄 Заполнить заново",
         "send": "✅ Отправить",
@@ -82,7 +83,7 @@ TXT = {
         "step1": "👤 Введи <b>ник в игре</b>:",
         "step1_bad": "⚠️ Ник без ссылок и @. Повтори:",
 
-        # 2/12 (NEW)
+        # 2/12
         "step2": "🧾 Укажи <b>настоящее имя</b>:",
         "step2_bad": "⚠️ Имя без ссылок и @. Повтори:",
 
@@ -107,7 +108,7 @@ TXT = {
         ),
         "step5_bad": "⚠️ Без ссылок и @. Повтори профу/саб:",
 
-        # 6/12 (LEVEL text changed)
+        # 6/12
         "step6": "⭐ Твой <b>LVL</b> в игре? (числом):",
         "step6_nan": "⚠️ LVL должен быть числом. Например: <b>78</b>",
         "step6_range": "⚠️ Укажи LVL от 1 до 99.",
@@ -182,6 +183,7 @@ TXT = {
             "Натисни <b>«Подати заявку»</b>, щоб почати."
         ),
         "cancel": "❌ Скасувати",
+        "back": "⬅️ Назад",
         "cancelled": "Ок, скасовано. Якщо захочеш — подай заявку знову.",
         "restart": "🔄 Заповнити знову",
         "send": "✅ Відправити",
@@ -280,6 +282,7 @@ TXT = {
             "Press <b>“Apply”</b> to start."
         ),
         "cancel": "❌ Cancel",
+        "back": "⬅️ Back",
         "cancelled": "Ok, cancelled. If you want — apply again.",
         "restart": "🔄 Fill again",
         "send": "✅ Send",
@@ -368,6 +371,8 @@ def get_selected_lang(data: dict) -> str | None:
     lang = data.get("lang")
     return lang if lang in SUPPORTED_LANGS else None
 
+TOTAL_STEPS = 12
+
 # ===================== Keyboards =====================
 def k_lang():
     kb = InlineKeyboardBuilder()
@@ -385,10 +390,13 @@ def k_start(lang: str):
     kb.adjust(1)
     return kb.as_markup()
 
-def k_cancel(lang: str):
+def k_cancel_back(lang: str, with_back: bool = True):
     t = TXT[lang]
     kb = InlineKeyboardBuilder()
+    if with_back:
+        kb.button(text=t["back"], callback_data="back")
     kb.button(text=t["cancel"], callback_data="cancel")
+    kb.adjust(2)
     return kb.as_markup()
 
 def k_confirm(lang: str):
@@ -396,16 +404,18 @@ def k_confirm(lang: str):
     kb = InlineKeyboardBuilder()
     kb.button(text=t["send"], callback_data="confirm_send")
     kb.button(text=t["restart"], callback_data="restart")
+    kb.button(text=t["back"], callback_data="back")
     kb.button(text=t["cancel"], callback_data="cancel")
-    kb.adjust(1)
+    kb.adjust(1, 1, 2)
     return kb.as_markup()
 
 def k_use_my_tg(lang: str):
     t = TXT[lang]
     kb = InlineKeyboardBuilder()
     kb.button(text=t["use_my_tg"], callback_data="use_my_tg")
+    kb.button(text=t["back"], callback_data="back")
     kb.button(text=t["cancel"], callback_data="cancel")
-    kb.adjust(1)
+    kb.adjust(1, 2)
     return kb.as_markup()
 
 def k_noble(lang: str):
@@ -414,7 +424,9 @@ def k_noble(lang: str):
     kb.button(text=t["noble_yes"], callback_data="noble:yes")
     kb.button(text=t["noble_no"], callback_data="noble:no")
     kb.button(text=t["noble_progress"], callback_data="noble:progress")
-    kb.adjust(2, 1)
+    kb.button(text=t["back"], callback_data="back")
+    kb.button(text=t["cancel"], callback_data="cancel")
+    kb.adjust(2, 1, 2)
     return kb.as_markup()
 
 def k_mic(lang: str):
@@ -422,7 +434,9 @@ def k_mic(lang: str):
     kb = InlineKeyboardBuilder()
     kb.button(text=t["mic_yes"], callback_data="mic:yes")
     kb.button(text=t["mic_no"], callback_data="mic:no")
-    kb.adjust(2)
+    kb.button(text=t["back"], callback_data="back")
+    kb.button(text=t["cancel"], callback_data="cancel")
+    kb.adjust(2, 2)
     return kb.as_markup()
 
 def k_ready(lang: str):
@@ -431,7 +445,9 @@ def k_ready(lang: str):
     kb.button(text=t["ready_yes"], callback_data="ready:yes")
     kb.button(text=t["ready_sometimes"], callback_data="ready:sometimes")
     kb.button(text=t["ready_no"], callback_data="ready:no")
-    kb.adjust(1)
+    kb.button(text=t["back"], callback_data="back")
+    kb.button(text=t["cancel"], callback_data="cancel")
+    kb.adjust(1, 2, 2)
     return kb.as_markup()
 
 def k_discipline(lang: str):
@@ -439,7 +455,9 @@ def k_discipline(lang: str):
     kb = InlineKeyboardBuilder()
     kb.button(text=t["disc_yes"], callback_data="disc:yes")
     kb.button(text=t["disc_no"], callback_data="disc:no")
-    kb.adjust(2)
+    kb.button(text=t["back"], callback_data="back")
+    kb.button(text=t["cancel"], callback_data="cancel")
+    kb.adjust(2, 2)
     return kb.as_markup()
 
 def k_admin_contact(user_id: int):
@@ -451,7 +469,7 @@ def k_admin_contact(user_id: int):
 class Form(StatesGroup):
     lang = State()
     nick = State()
-    real_name = State()  # NEW
+    real_name = State()
     contact = State()
     country = State()
     prof = State()
@@ -463,6 +481,22 @@ class Form(StatesGroup):
     why = State()
     discipline = State()
     confirm = State()
+
+FORM_ORDER = [
+    Form.nick,
+    Form.real_name,
+    Form.contact,
+    Form.country,
+    Form.prof,
+    Form.lvl,
+    Form.noble,
+    Form.prime,
+    Form.mic,
+    Form.ready,
+    Form.why,
+    Form.discipline,
+]
+STATE_TO_STEP = {st.state: i + 1 for i, st in enumerate(FORM_ORDER)}
 
 # ===================== Helpers =====================
 async def guard_private_message(m: Message, lang: str) -> bool:
@@ -568,14 +602,6 @@ def to_ru_value(field: str, value: str, user_lang: str) -> str:
         }
         return maps.get(ul, {}).get(v, value)
 
-    if field == "discipline":
-        maps = {
-            "ru": {"подтверждена": "подтверждена", "не подтверждена": "НЕ подтверждена"},
-            "ua": {"підтверджено": "подтверждена", "не підтверджено": "НЕ подтверждена"},
-            "en": {"confirmed": "подтверждена", "not confirmed": "НЕ подтверждена"},
-        }
-        return maps.get(ul, {}).get(v, value)
-
     return value
 
 async def send_admin_application_ru(user, data: dict, discipline_ok: bool):
@@ -624,6 +650,70 @@ async def send_admin_application_ru(user, data: dict, discipline_ok: bool):
         reply_markup=k_admin_contact(user.id),
     )
 
+def build_step_text(lang: str, step_no: int, key: str) -> str:
+    return f"{TXT[lang]['form']} ({step_no}/{TOTAL_STEPS})\n\n{TXT[lang][key]}"
+
+async def show_step_by_state(cq_or_msg, state: FSMContext, lang: str, target_state: State, edit: bool):
+    st = target_state.state
+    step_no = STATE_TO_STEP.get(st, 1)
+
+    # Text steps
+    if st == Form.nick.state:
+        text = build_step_text(lang, step_no, "step1")
+        kb = k_cancel_back(lang, with_back=True)
+    elif st == Form.real_name.state:
+        text = build_step_text(lang, step_no, "step2")
+        kb = k_cancel_back(lang, with_back=True)
+    elif st == Form.contact.state:
+        data = await state.get_data()
+        has_username = bool(getattr(getattr(cq_or_msg, "from_user", None), "username", None))
+        # If user has username - show "use my tg" keyboard; otherwise normal
+        if has_username:
+            kb = k_use_my_tg(lang)
+        else:
+            kb = k_cancel_back(lang, with_back=True)
+        text = build_step_text(lang, step_no, "step3")
+    elif st == Form.country.state:
+        text = build_step_text(lang, step_no, "step4")
+        kb = k_cancel_back(lang, with_back=True)
+    elif st == Form.prof.state:
+        text = build_step_text(lang, step_no, "step5")
+        kb = k_cancel_back(lang, with_back=True)
+    elif st == Form.lvl.state:
+        text = build_step_text(lang, step_no, "step6")
+        kb = k_cancel_back(lang, with_back=True)
+    elif st == Form.noble.state:
+        text = build_step_text(lang, step_no, "step7")
+        kb = k_noble(lang)
+    elif st == Form.prime.state:
+        text = build_step_text(lang, step_no, "step8")
+        kb = k_cancel_back(lang, with_back=True)
+    elif st == Form.mic.state:
+        text = build_step_text(lang, step_no, "step9")
+        kb = k_mic(lang)
+    elif st == Form.ready.state:
+        text = build_step_text(lang, step_no, "step10")
+        kb = k_ready(lang)
+    elif st == Form.why.state:
+        text = build_step_text(lang, step_no, "step11")
+        kb = k_cancel_back(lang, with_back=True)
+    elif st == Form.discipline.state:
+        text = build_step_text(lang, step_no, "step12")
+        kb = k_discipline(lang)
+    else:
+        text = TXT[lang]["welcome"]
+        kb = k_start(lang)
+
+    await state.set_state(target_state)
+
+    if isinstance(cq_or_msg, CallbackQuery):
+        if edit:
+            await cq_or_msg.message.edit_text(text, reply_markup=kb, parse_mode="HTML")
+        else:
+            await cq_or_msg.message.answer(text, reply_markup=kb, parse_mode="HTML")
+    else:
+        await cq_or_msg.answer(text, reply_markup=kb, parse_mode="HTML")
+
 # ===================== /start =====================
 @dp.message(CommandStart())
 async def cmd_start(m: Message, state: FSMContext):
@@ -660,6 +750,40 @@ async def cb_lang(cq: CallbackQuery, state: FSMContext):
 
     await cq.answer()
 
+# ===================== Back button =====================
+@dp.callback_query(F.data == "back")
+async def cb_back(cq: CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    lang = safe_lang(data.get("lang"))
+    cur = await state.get_state()
+
+    # From confirm -> back to discipline question
+    if cur == Form.confirm.state:
+        await show_step_by_state(cq, state, lang, Form.discipline, edit=True)
+        await cq.answer()
+        return
+
+    # If not in form steps -> go to welcome
+    if cur not in STATE_TO_STEP:
+        await state.clear()
+        await state.update_data(lang=lang)
+        await cq.message.edit_text(TXT[lang]["welcome"], reply_markup=k_start(lang), parse_mode="HTML")
+        await cq.answer()
+        return
+
+    cur_idx = STATE_TO_STEP[cur]  # 1..12
+    if cur_idx <= 1:
+        # back from first step => welcome
+        await state.clear()
+        await state.update_data(lang=lang)
+        await cq.message.edit_text(TXT[lang]["welcome"], reply_markup=k_start(lang), parse_mode="HTML")
+        await cq.answer()
+        return
+
+    prev_state = FORM_ORDER[cur_idx - 2]  # previous in list
+    await show_step_by_state(cq, state, lang, prev_state, edit=True)
+    await cq.answer()
+
 # ===================== Menu =====================
 @dp.callback_query(F.data == "info")
 async def cb_info(cq: CallbackQuery, state: FSMContext):
@@ -677,8 +801,8 @@ async def cb_start_form(cq: CallbackQuery, state: FSMContext):
     await state.update_data(lang=lang)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (1/12)\n\n{TXT[lang]['step1']}",
-        reply_markup=k_cancel(lang),
+        build_step_text(lang, 1, "step1"),
+        reply_markup=k_cancel_back(lang, with_back=True),
         parse_mode="HTML",
     )
     await state.set_state(Form.nick)
@@ -704,8 +828,8 @@ async def cb_restart(cq: CallbackQuery, state: FSMContext):
     await state.update_data(lang=lang)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (1/12)\n\n{TXT[lang]['step1']}",
-        reply_markup=k_cancel(lang),
+        build_step_text(lang, 1, "step1"),
+        reply_markup=k_cancel_back(lang, with_back=True),
         parse_mode="HTML",
     )
     await state.set_state(Form.nick)
@@ -721,20 +845,19 @@ async def step_nick(m: Message, state: FSMContext):
         return
 
     if bad_text_general(m.text):
-        await m.answer(TXT[lang]["step1_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step1_bad"], reply_markup=k_cancel_back(lang, with_back=True), parse_mode="HTML")
         return
 
     await state.update_data(nick=m.text.strip()[:40])
 
-    # Next: real name
     await m.answer(
-        f"{TXT[lang]['form']} (2/12)\n\n{TXT[lang]['step2']}",
-        reply_markup=k_cancel(lang),
+        build_step_text(lang, 2, "step2"),
+        reply_markup=k_cancel_back(lang, with_back=True),
         parse_mode="HTML",
     )
     await state.set_state(Form.real_name)
 
-# ===================== Step 2 Real name (NEW) =====================
+# ===================== Step 2 Real name =====================
 @dp.message(Form.real_name)
 async def step_real_name(m: Message, state: FSMContext):
     data = await state.get_data()
@@ -744,17 +867,17 @@ async def step_real_name(m: Message, state: FSMContext):
         return
 
     if bad_text_general(m.text):
-        await m.answer(TXT[lang]["step2_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step2_bad"], reply_markup=k_cancel_back(lang, with_back=True), parse_mode="HTML")
         return
 
     await state.update_data(real_name=m.text.strip()[:40])
 
-    kb = k_cancel(lang)
+    kb = k_cancel_back(lang, with_back=True)
     if m.from_user and m.from_user.username:
         kb = k_use_my_tg(lang)
 
     await m.answer(
-        f"{TXT[lang]['form']} (3/12)\n\n{TXT[lang]['step3']}",
+        build_step_text(lang, 3, "step3"),
         reply_markup=kb,
         parse_mode="HTML",
     )
@@ -777,8 +900,8 @@ async def cb_use_my_tg(cq: CallbackQuery, state: FSMContext):
     await state.update_data(contact=f"@{username}")
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (4/12)\n\n{TXT[lang]['step4']}",
-        reply_markup=k_cancel(lang),
+        build_step_text(lang, 4, "step4"),
+        reply_markup=k_cancel_back(lang, with_back=True),
         parse_mode="HTML",
     )
     await state.set_state(Form.country)
@@ -795,7 +918,7 @@ async def step_contact(m: Message, state: FSMContext):
 
     t = (m.text or "").strip()
     if not t:
-        await m.answer(TXT[lang]["step3_empty"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step3_empty"], reply_markup=k_cancel_back(lang, with_back=True), parse_mode="HTML")
         return
 
     low = t.lower()
@@ -807,8 +930,8 @@ async def step_contact(m: Message, state: FSMContext):
     await state.update_data(contact=contact)
 
     await m.answer(
-        f"{TXT[lang]['form']} (4/12)\n\n{TXT[lang]['step4']}",
-        reply_markup=k_cancel(lang),
+        build_step_text(lang, 4, "step4"),
+        reply_markup=k_cancel_back(lang, with_back=True),
         parse_mode="HTML",
     )
     await state.set_state(Form.country)
@@ -823,14 +946,14 @@ async def step_country(m: Message, state: FSMContext):
         return
 
     if bad_text_general(m.text):
-        await m.answer(TXT[lang]["step4_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step4_bad"], reply_markup=k_cancel_back(lang, with_back=True), parse_mode="HTML")
         return
 
     await state.update_data(country=m.text.strip()[:64])
 
     await m.answer(
-        f"{TXT[lang]['form']} (5/12)\n\n{TXT[lang]['step5']}",
-        reply_markup=k_cancel(lang),
+        build_step_text(lang, 5, "step5"),
+        reply_markup=k_cancel_back(lang, with_back=True),
         parse_mode="HTML",
     )
     await state.set_state(Form.prof)
@@ -845,14 +968,14 @@ async def step_prof(m: Message, state: FSMContext):
         return
 
     if bad_text_general(m.text):
-        await m.answer(TXT[lang]["step5_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step5_bad"], reply_markup=k_cancel_back(lang, with_back=True), parse_mode="HTML")
         return
 
     await state.update_data(prof=m.text.strip()[:80])
 
     await m.answer(
-        f"{TXT[lang]['form']} (6/12)\n\n{TXT[lang]['step6']}",
-        reply_markup=k_cancel(lang),
+        build_step_text(lang, 6, "step6"),
+        reply_markup=k_cancel_back(lang, with_back=True),
         parse_mode="HTML",
     )
     await state.set_state(Form.lvl)
@@ -868,18 +991,18 @@ async def step_lvl(m: Message, state: FSMContext):
 
     t = (m.text or "").strip()
     if not t.isdigit():
-        await m.answer(TXT[lang]["step6_nan"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step6_nan"], reply_markup=k_cancel_back(lang, with_back=True), parse_mode="HTML")
         return
 
     lvl_int = int(t)
     if lvl_int < 1 or lvl_int > 99:
-        await m.answer(TXT[lang]["step6_range"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step6_range"], reply_markup=k_cancel_back(lang, with_back=True), parse_mode="HTML")
         return
 
     await state.update_data(lvl=lvl_int)
 
     await m.answer(
-        f"{TXT[lang]['form']} (7/12)\n\n{TXT[lang]['step7']}",
+        build_step_text(lang, 7, "step7"),
         reply_markup=k_noble(lang),
         parse_mode="HTML",
     )
@@ -907,8 +1030,8 @@ async def cb_noble(cq: CallbackQuery, state: FSMContext):
     await state.update_data(noble=noble)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (8/12)\n\n{TXT[lang]['step8']}",
-        reply_markup=k_cancel(lang),
+        build_step_text(lang, 8, "step8"),
+        reply_markup=k_cancel_back(lang, with_back=True),
         parse_mode="HTML",
     )
     await state.set_state(Form.prime)
@@ -924,13 +1047,13 @@ async def step_prime(m: Message, state: FSMContext):
         return
 
     if bad_text_general(m.text):
-        await m.answer(TXT[lang]["step8_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step8_bad"], reply_markup=k_cancel_back(lang, with_back=True), parse_mode="HTML")
         return
 
     await state.update_data(prime=m.text.strip()[:80])
 
     await m.answer(
-        f"{TXT[lang]['form']} (9/12)\n\n{TXT[lang]['step9']}",
+        build_step_text(lang, 9, "step9"),
         reply_markup=k_mic(lang),
         parse_mode="HTML",
     )
@@ -953,7 +1076,7 @@ async def cb_mic(cq: CallbackQuery, state: FSMContext):
     await state.update_data(mic=mic)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (10/12)\n\n{TXT[lang]['step10']}",
+        build_step_text(lang, 10, "step10"),
         reply_markup=k_ready(lang),
         parse_mode="HTML",
     )
@@ -982,8 +1105,8 @@ async def cb_ready(cq: CallbackQuery, state: FSMContext):
     await state.update_data(ready=ready)
 
     await cq.message.edit_text(
-        f"{TXT[lang]['form']} (11/12)\n\n{TXT[lang]['step11']}",
-        reply_markup=k_cancel(lang),
+        build_step_text(lang, 11, "step11"),
+        reply_markup=k_cancel_back(lang, with_back=True),
         parse_mode="HTML",
     )
     await state.set_state(Form.why)
@@ -1000,13 +1123,13 @@ async def step_why(m: Message, state: FSMContext):
 
     t = (m.text or "").strip()
     if not t or bad_text_general(t):
-        await m.answer(TXT[lang]["step11_bad"], reply_markup=k_cancel(lang), parse_mode="HTML")
+        await m.answer(TXT[lang]["step11_bad"], reply_markup=k_cancel_back(lang, with_back=True), parse_mode="HTML")
         return
 
     await state.update_data(why=t[:180])
 
     await m.answer(
-        f"{TXT[lang]['form']} (12/12)\n\n{TXT[lang]['step12']}",
+        build_step_text(lang, 12, "step12"),
         reply_markup=k_discipline(lang),
         parse_mode="HTML",
     )
