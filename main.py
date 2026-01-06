@@ -9,6 +9,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.utils.keyboard import InlineKeyboardBuilder
+from aiogram.exceptions import TelegramBadRequest
 
 from fastapi import FastAPI, Request
 from fastapi.responses import Response
@@ -49,6 +50,19 @@ def normalize_contact(raw: str) -> str:
     if re.fullmatch(r"[A-Za-z0-9_]{5,32}", s):
         return f"@{s}"
     return (raw or "").strip()[:64]
+
+async def safe_cq_answer(cq: CallbackQuery, text: str | None = None, **kwargs):
+    """
+    Telegram может вернуть BadRequest если callback query устарел/уже отвечен.
+    Никогда не падаем из-за cq.answer().
+    """
+    try:
+        if text is None:
+            await cq.answer(**kwargs)
+        else:
+            await cq.answer(text, **kwargs)
+    except TelegramBadRequest:
+        pass
 
 # ===================== i18n =====================
 SUPPORTED_LANGS = ("ru", "ua", "en")
@@ -390,6 +404,14 @@ def k_start(lang: str):
     kb.adjust(1)
     return kb.as_markup()
 
+def k_info(lang: str):
+    t = TXT[lang]
+    kb = InlineKeyboardBuilder()
+    kb.button(text=t["btn_apply"], callback_data="start_form")
+    kb.button(text=t["back"], callback_data="back")
+    kb.adjust(1)
+    return kb.as_markup()
+
 def k_cancel_back(lang: str, with_back: bool = True):
     t = TXT[lang]
     kb = InlineKeyboardBuilder()
@@ -509,46 +531,16 @@ def fmt_preview(lang: str, data: dict) -> str:
     t = TXT[lang]
     label = {
         "ru": (
-            "👤 Ник",
-            "🧾 Имя",
-            "📱 Контакт TG",
-            "🌍 Страна/город",
-            "🧙‍♂️ Профа/Саб",
-            "⭐ LVL",
-            "👑 Нобл",
-            "⏰ Прайм",
-            "🎙 Микрофон",
-            "📅 Готовность",
-            "🏰 Почему клан",
-            "⚠️ Дисциплина",
+            "👤 Ник","🧾 Имя","📱 Контакт TG","🌍 Страна/город","🧙‍♂️ Профа/Саб","⭐ LVL",
+            "👑 Нобл","⏰ Прайм","🎙 Микрофон","📅 Готовность","🏰 Почему клан","⚠️ Дисциплина",
         ),
         "ua": (
-            "👤 Нік",
-            "🧾 Ім’я",
-            "📱 Контакт TG",
-            "🌍 Країна/місто",
-            "🧙‍♂️ Профа/Саб",
-            "⭐ LVL",
-            "👑 Нобл",
-            "⏰ Прайм",
-            "🎙 Мікрофон",
-            "📅 Готовність",
-            "🏰 Чому клан",
-            "⚠️ Дисципліна",
+            "👤 Нік","🧾 Ім’я","📱 Контакт TG","🌍 Країна/місто","🧙‍♂️ Профа/Саб","⭐ LVL",
+            "👑 Нобл","⏰ Прайм","🎙 Мікрофон","📅 Готовність","🏰 Чому клан","⚠️ Дисципліна",
         ),
         "en": (
-            "👤 Nick",
-            "🧾 Name",
-            "📱 TG contact",
-            "🌍 Country/City",
-            "🧙‍♂️ Class/Sub",
-            "⭐ LVL",
-            "👑 Noble",
-            "⏰ Prime time",
-            "🎙 Mic",
-            "📅 Readiness",
-            "🏰 Why clan",
-            "⚠️ Discipline",
+            "👤 Nick","🧾 Name","📱 TG contact","🌍 Country/City","🧙‍♂️ Class/Sub","⭐ LVL",
+            "👑 Noble","⏰ Prime time","🎙 Mic","📅 Readiness","🏰 Why clan","⚠️ Discipline",
         ),
     }[lang]
 
@@ -657,7 +649,6 @@ async def show_step_by_state(cq_or_msg, state: FSMContext, lang: str, target_sta
     st = target_state.state
     step_no = STATE_TO_STEP.get(st, 1)
 
-    # Text steps
     if st == Form.nick.state:
         text = build_step_text(lang, step_no, "step1")
         kb = k_cancel_back(lang, with_back=True)
@@ -665,13 +656,8 @@ async def show_step_by_state(cq_or_msg, state: FSMContext, lang: str, target_sta
         text = build_step_text(lang, step_no, "step2")
         kb = k_cancel_back(lang, with_back=True)
     elif st == Form.contact.state:
-        data = await state.get_data()
         has_username = bool(getattr(getattr(cq_or_msg, "from_user", None), "username", None))
-        # If user has username - show "use my tg" keyboard; otherwise normal
-        if has_username:
-            kb = k_use_my_tg(lang)
-        else:
-            kb = k_cancel_back(lang, with_back=True)
+        kb = k_use_my_tg(lang) if has_username else k_cancel_back(lang, with_back=True)
         text = build_step_text(lang, step_no, "step3")
     elif st == Form.country.state:
         text = build_step_text(lang, step_no, "step4")
@@ -730,25 +716,17 @@ async def cb_lang(cq: CallbackQuery, state: FSMContext):
     selected = get_selected_lang(data)
 
     if selected == lang:
-        await cq.answer(TXT[lang]["lang_already"])
+        await safe_cq_answer(cq, TXT[lang]["lang_already"])
         return
 
     await state.update_data(lang=lang)
 
     try:
-        await cq.message.edit_text(
-            TXT[lang]["welcome"],
-            reply_markup=k_start(lang),
-            parse_mode="HTML",
-        )
+        await cq.message.edit_text(TXT[lang]["welcome"], reply_markup=k_start(lang), parse_mode="HTML")
     except Exception:
-        await cq.message.answer(
-            TXT[lang]["welcome"],
-            reply_markup=k_start(lang),
-            parse_mode="HTML",
-        )
+        await cq.message.answer(TXT[lang]["welcome"], reply_markup=k_start(lang), parse_mode="HTML")
 
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 # ===================== Back button =====================
 @dp.callback_query(F.data == "back")
@@ -757,40 +735,37 @@ async def cb_back(cq: CallbackQuery, state: FSMContext):
     lang = safe_lang(data.get("lang"))
     cur = await state.get_state()
 
-    # From confirm -> back to discipline question
     if cur == Form.confirm.state:
         await show_step_by_state(cq, state, lang, Form.discipline, edit=True)
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
-    # If not in form steps -> go to welcome
     if cur not in STATE_TO_STEP:
         await state.clear()
         await state.update_data(lang=lang)
         await cq.message.edit_text(TXT[lang]["welcome"], reply_markup=k_start(lang), parse_mode="HTML")
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
-    cur_idx = STATE_TO_STEP[cur]  # 1..12
+    cur_idx = STATE_TO_STEP[cur]
     if cur_idx <= 1:
-        # back from first step => welcome
         await state.clear()
         await state.update_data(lang=lang)
         await cq.message.edit_text(TXT[lang]["welcome"], reply_markup=k_start(lang), parse_mode="HTML")
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
-    prev_state = FORM_ORDER[cur_idx - 2]  # previous in list
+    prev_state = FORM_ORDER[cur_idx - 2]
     await show_step_by_state(cq, state, lang, prev_state, edit=True)
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 # ===================== Menu =====================
 @dp.callback_query(F.data == "info")
 async def cb_info(cq: CallbackQuery, state: FSMContext):
     data = await state.get_data()
     lang = safe_lang(data.get("lang"))
-    await cq.message.edit_text(TXT[lang]["info"], reply_markup=k_start(lang), parse_mode="HTML")
-    await cq.answer()
+    await cq.message.edit_text(TXT[lang]["info"], reply_markup=k_info(lang), parse_mode="HTML")
+    await safe_cq_answer(cq)
 
 @dp.callback_query(F.data == "start_form")
 async def cb_start_form(cq: CallbackQuery, state: FSMContext):
@@ -806,7 +781,7 @@ async def cb_start_form(cq: CallbackQuery, state: FSMContext):
         parse_mode="HTML",
     )
     await state.set_state(Form.nick)
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 @dp.callback_query(F.data == "cancel")
 async def cb_cancel(cq: CallbackQuery, state: FSMContext):
@@ -817,7 +792,7 @@ async def cb_cancel(cq: CallbackQuery, state: FSMContext):
     await state.update_data(lang=lang)
 
     await cq.message.edit_text(TXT[lang]["cancelled"], reply_markup=k_start(lang), parse_mode="HTML")
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 @dp.callback_query(F.data == "restart")
 async def cb_restart(cq: CallbackQuery, state: FSMContext):
@@ -833,7 +808,7 @@ async def cb_restart(cq: CallbackQuery, state: FSMContext):
         parse_mode="HTML",
     )
     await state.set_state(Form.nick)
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 # ===================== Step 1 Nick =====================
 @dp.message(Form.nick)
@@ -886,7 +861,7 @@ async def step_real_name(m: Message, state: FSMContext):
 @dp.callback_query(F.data == "use_my_tg")
 async def cb_use_my_tg(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.contact.state:
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
     data = await state.get_data()
@@ -894,7 +869,7 @@ async def cb_use_my_tg(cq: CallbackQuery, state: FSMContext):
 
     username = cq.from_user.username
     if not username:
-        await cq.answer(TXT[lang]["no_username_alert"], show_alert=True)
+        await safe_cq_answer(cq, TXT[lang]["no_username_alert"], show_alert=True)
         return
 
     await state.update_data(contact=f"@{username}")
@@ -905,7 +880,7 @@ async def cb_use_my_tg(cq: CallbackQuery, state: FSMContext):
         parse_mode="HTML",
     )
     await state.set_state(Form.country)
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 # ===================== Step 3 Contact =====================
 @dp.message(Form.contact)
@@ -1012,7 +987,7 @@ async def step_lvl(m: Message, state: FSMContext):
 @dp.callback_query(F.data.startswith("noble:"))
 async def cb_noble(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.noble.state:
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
     data = await state.get_data()
@@ -1035,7 +1010,7 @@ async def cb_noble(cq: CallbackQuery, state: FSMContext):
         parse_mode="HTML",
     )
     await state.set_state(Form.prime)
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 # ===================== Step 8 Prime =====================
 @dp.message(Form.prime)
@@ -1063,7 +1038,7 @@ async def step_prime(m: Message, state: FSMContext):
 @dp.callback_query(F.data.startswith("mic:"))
 async def cb_mic(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.mic.state:
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
     data = await state.get_data()
@@ -1081,13 +1056,13 @@ async def cb_mic(cq: CallbackQuery, state: FSMContext):
         parse_mode="HTML",
     )
     await state.set_state(Form.ready)
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 # ===================== Step 10 Ready =====================
 @dp.callback_query(F.data.startswith("ready:"))
 async def cb_ready(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.ready.state:
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
     data = await state.get_data()
@@ -1110,7 +1085,7 @@ async def cb_ready(cq: CallbackQuery, state: FSMContext):
         parse_mode="HTML",
     )
     await state.set_state(Form.why)
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 # ===================== Step 11 Why =====================
 @dp.message(Form.why)
@@ -1139,7 +1114,7 @@ async def step_why(m: Message, state: FSMContext):
 @dp.callback_query(F.data.startswith("disc:"))
 async def cb_disc(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.discipline.state:
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
     data = await state.get_data()
@@ -1162,19 +1137,19 @@ async def cb_disc(cq: CallbackQuery, state: FSMContext):
         await state.clear()
         await state.update_data(lang=lang)
         await cq.message.edit_text(TXT[lang]["disc_decline_user"], reply_markup=k_start(lang), parse_mode="HTML")
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
     data2 = await state.get_data()
     await cq.message.edit_text(fmt_preview(lang, data2), reply_markup=k_confirm(lang), parse_mode="HTML")
     await state.set_state(Form.confirm)
-    await cq.answer()
+    await safe_cq_answer(cq)
 
 # ===================== Confirm send =====================
 @dp.callback_query(F.data == "confirm_send")
 async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
     if await state.get_state() != Form.confirm.state:
-        await cq.answer()
+        await safe_cq_answer(cq)
         return
 
     data = await state.get_data()
@@ -1183,7 +1158,7 @@ async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
     now = datetime.now(timezone.utc)
     prev = last_submit.get(cq.from_user.id)
     if prev and now - prev < timedelta(hours=COOLDOWN_HOURS):
-        await cq.answer(TXT[lang]["cooldown"], show_alert=True)
+        await safe_cq_answer(cq, TXT[lang]["cooldown"], show_alert=True)
         return
 
     await send_admin_application_ru(cq.from_user, data, discipline_ok=True)
@@ -1193,7 +1168,7 @@ async def cb_confirm_send(cq: CallbackQuery, state: FSMContext):
     await state.update_data(lang=lang)
 
     await cq.message.edit_text(TXT[lang]["sent"], reply_markup=k_start(lang), parse_mode="HTML")
-    await cq.answer("OK")
+    await safe_cq_answer(cq, "OK")
 
 @dp.message(Form.confirm)
 async def in_confirm_state(m: Message, state: FSMContext):
